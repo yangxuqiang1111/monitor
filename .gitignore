@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+monitor.iml
+monitor-common/monitor-common.iml
+monitor-connector/monitor-connector.iml
+monitor-dao/monitor-dao.iml
+monitor-provider/monitor-provider.iml
+monitor-web/monitor-web.iml
+.idea
