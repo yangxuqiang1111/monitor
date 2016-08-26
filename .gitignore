@@ -7,3 +7,4 @@ monitor-dao/monitor-dao.iml
 monitor-provider/monitor-provider.iml
 monitor-web/monitor-web.iml
 .idea
+monitor-test/monitor-test.iml
