@@ -1,6 +1,9 @@
 package com.yangxq.monitor.common.po;
 
-public class Delay {
+import java.io.Serializable;
+
+public class Delay implements Serializable{
+    private static final long serialVersionUID = 7536180865228722714L;
     private Integer id;
 
     private Integer businessId;

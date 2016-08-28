@@ -11,7 +11,7 @@ import javax.annotation.Resource;
  * Created by Yangxq on 2016/8/26.
  * 监控业务提供者
  */
-public class BusinessProviderImpl extends BaseImpl<Business> implements BusinessProvider<Business> {
+public class BusinessProviderImpl extends BaseProviderImpl<Business> implements BusinessProvider<Business> {
     @Resource
     private BusinessMapper businessMapper;
     @Override

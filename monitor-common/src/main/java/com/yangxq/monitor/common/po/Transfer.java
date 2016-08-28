@@ -1,6 +1,9 @@
 package com.yangxq.monitor.common.po;
 
-public class Transfer {
+import java.io.Serializable;
+
+public class Transfer implements Serializable {
+    private static final long serialVersionUID = -3795700482494558147L;
     private Integer id;
 
     private Integer businessId;

@@ -1,6 +1,9 @@
 package com.yangxq.monitor.common.po;
 
-public class Business {
+import java.io.Serializable;
+
+public class Business  implements Serializable{
+    private static final long serialVersionUID = 9128417440316819013L;
     private Integer id;
 
     private Byte type;

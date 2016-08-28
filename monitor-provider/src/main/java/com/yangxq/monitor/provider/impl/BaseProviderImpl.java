@@ -6,7 +6,7 @@ import com.yangxq.monitor.dao.mysql.mapper.IBaseMapper;
 /**
  * Created by Yangxq on 2016/8/26.
  */
-public abstract class BaseImpl<T> implements IBaseProvider<T> {
+public abstract class BaseProviderImpl<T> implements IBaseProvider<T> {
     @Override
     public boolean insert(T t) {
         int result = getBaseMapper().insert(t);

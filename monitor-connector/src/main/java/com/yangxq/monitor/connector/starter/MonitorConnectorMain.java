@@ -11,9 +11,9 @@ import org.springframework.context.ApplicationContext;
  * Created by Yangxq on 2016/8/26.
  * 启动类
  */
-public class Main {
+public class MonitorConnectorMain {
     private static ApplicationContext applicationContext;
-    private static Logger log = Logger.getLogger(Main.class);
+    private static Logger log = Logger.getLogger(MonitorConnectorMain.class);
 
     public static void main(String[] args) {
         try {

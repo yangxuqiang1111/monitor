@@ -40,7 +40,7 @@ public class UDPMonitorUtil {
      * @param num     调用数量
      */
     public static void sendPacketOps(String opsHost, int opsPort, int key, Long num) {
-        String packet = "IM-==-" + DateUtil.getFormatTime() + "-==-" + key + "-==-" + num;
+        String packet = "IM-==-" + DateUtil.getNowSecond() + "-==-" + key + "-==-" + num;
         sendPacket(opsHost, opsPort, packet);
     }
 
@@ -76,6 +76,6 @@ public class UDPMonitorUtil {
     }
 
     public static void main(String[] args) {
-        sendPacketOps("127.0.0.1",20020,1,1L);
+        sendPacketOps("127.0.0.1",20021,1,1L);
     }
 }

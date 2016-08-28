@@ -11,7 +11,7 @@ import javax.annotation.Resource;
  * Created by Yangxq on 2016/8/26.
  * 调用监控服务
  */
-public class TransferProviderImpl extends BaseImpl<Transfer> implements TransferProvider<Transfer> {
+public class TransferProviderImpl extends BaseProviderImpl<Transfer> implements TransferProvider<Transfer> {
     @Resource
     private TransferMapper transferMapper;
     @Override

@@ -10,4 +10,8 @@ public class Global {
     public static final String  SEPARATED="-==-";
     public static final int UDP_DELAY = 1; // 耗时
     public static final int UDP_TRANSFER=2; //调用量
+
+    public enum BusinessType{
+
+    }
 }
