@@ -36,13 +36,7 @@ public class TransferStatisticTask {
         for (int i = 0; i < businessIds.size(); i++) {
             Integer businessId = businessIds.get(i).getBusinessId();
             List<Transfer> transfers = transferMapper.listByBusinessId(businessId, nowMinute - 60, nowMinute);
-            int transferNum = 0, sum = transfers.size();
-            for (int j = 0; j < sum; j++) {
-                Transfer transfer = transfers.get(j);
-                transferNum += transfer.getNum();
-            }
-            transferNum = (int) Math.ceil(transferNum / sum);
-
+            int transferNum = transfers.size();
             Statistics statistics = new Statistics();
             statistics.setNum(transferNum);
             statistics.setBusinessId(businessId);
