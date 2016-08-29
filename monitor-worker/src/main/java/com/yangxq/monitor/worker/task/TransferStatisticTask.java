@@ -41,7 +41,7 @@ public class TransferStatisticTask {
             statistics.setNum(transferNum);
             statistics.setBusinessId(businessId);
             statistics.setType(Global.BusinessType.TRANSFER.value);
-            statistics.setTime(DateUtil.getFormatTime(nowMinute));
+            statistics.setTime(Long.valueOf(nowMinute));
             statisticsMapper.insert(statistics);
         }
 

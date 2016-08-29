@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/monitor-provider/monitor-provider.iml" filepath="$PROJECT_DIR$/monitor-provider/monitor-provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/monitor-test/monitor-test.iml" filepath="$PROJECT_DIR$/monitor-test/monitor-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/monitor-web/monitor-web.iml" filepath="$PROJECT_DIR$/monitor-web/monitor-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monitor-web-common/monitor-web-common.iml" filepath="$PROJECT_DIR$/monitor-web-common/monitor-web-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/monitor-worker/monitor-worker.iml" filepath="$PROJECT_DIR$/monitor-worker/monitor-worker.iml" />
     </modules>
   </component>

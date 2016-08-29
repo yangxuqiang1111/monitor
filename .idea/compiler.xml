@@ -23,7 +23,6 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="monitor-test" />
-        <module name="monitor-web" />
         <module name="monitor-work" />
         <module name="monitor-worker" />
       </profile>
@@ -55,6 +54,20 @@
         <processorPath useClasspath="true" />
         <module name="monitor-connector" />
       </profile>
+      <profile default="false" name="Annotation profile for monitor-web-common" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="monitor-web-common" />
+      </profile>
+      <profile default="false" name="Annotation profile for monitor-web" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="monitor-web" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="monitor" target="1.5" />
@@ -63,7 +76,8 @@
       <module name="monitor-dao" target="1.8" />
       <module name="monitor-provider" target="1.8" />
       <module name="monitor-test" target="1.5" />
-      <module name="monitor-web" target="1.5" />
+      <module name="monitor-web" target="1.8" />
+      <module name="monitor-web-common" target="1.8" />
       <module name="monitor-work" target="1.5" />
       <module name="monitor-worker" target="1.5" />
     </bytecodeTargetLevel>

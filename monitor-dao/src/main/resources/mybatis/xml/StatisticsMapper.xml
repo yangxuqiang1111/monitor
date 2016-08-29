@@ -11,6 +11,12 @@
   <sql id="Base_Column_List" >
     id, business_id, time, type, num
   </sql>
+  <select id="list" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from mt_statistics
+    where business_id=#{0} AND time>=#{1} AND #{2}>time
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

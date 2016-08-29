@@ -46,7 +46,7 @@ public class DelayStatisticTask {
            statistics.setNum(delayTime);
            statistics.setBusinessId(businessId);
            statistics.setType(Global.BusinessType.DELAY.value);
-           statistics.setTime(DateUtil.getFormatTime(nowMinute));
+           statistics.setTime(Long.valueOf(nowMinute));
            statisticsMapper.insert(statistics);
        }
 

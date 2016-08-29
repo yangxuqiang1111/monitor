@@ -73,6 +73,8 @@ public class DateUtil {
        return nowSecond- localDateTime.getSecond();
     }
 
+
+
     /**
      * 获取格式为yyyyMMddHHmm 的日期
      * @param nowMinute
@@ -83,6 +85,17 @@ public class DateUtil {
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         return Long.parseLong(localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
     }
+
+    /**
+     * 获取格式为yyyy-MM-dd HH:mm 的日期
+     * @param nowMinute
+     * @return
+     */
+    public static String getFormDateString(int nowMinute){
+        Instant instant = Instant.ofEpochSecond(nowMinute);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
     /**
      * 获取当前时间(毫秒数)
      *
@@ -92,9 +105,15 @@ public class DateUtil {
         return System.currentTimeMillis();
     }
 
+    public static int getTodayBegTime(){
+        int nowSecond = getNowSecond();
+        Instant instant = Instant.ofEpochSecond(nowSecond);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        return nowSecond-localDateTime.getHour()*60*60-localDateTime.getMinute()*60-localDateTime.getSecond();
+    }
+
     public static void main(String[] args) {
-        int nowMinute = getNowMinute();
-        System.out.println("m"+nowMinute);
+        System.out.println(getTodayBegTime());
     }
 
 

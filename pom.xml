@@ -15,8 +15,8 @@
         <module>monitor-connector</module>
         <module>monitor-provider</module>
         <module>monitor-test</module>
-        <module>monitor-work</module>
         <module>monitor-worker</module>
+        <module>monitor-web-common</module>
     </modules>
 
 
