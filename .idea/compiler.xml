@@ -24,6 +24,8 @@
         <processorPath useClasspath="true" />
         <module name="monitor-test" />
         <module name="monitor-web" />
+        <module name="monitor-work" />
+        <module name="monitor-worker" />
       </profile>
       <profile default="false" name="Annotation profile for monitor-common" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -62,6 +64,8 @@
       <module name="monitor-provider" target="1.8" />
       <module name="monitor-test" target="1.5" />
       <module name="monitor-web" target="1.5" />
+      <module name="monitor-work" target="1.5" />
+      <module name="monitor-worker" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

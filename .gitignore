@@ -9,3 +9,4 @@ monitor-web/monitor-web.iml
 .idea
 monitor-test/monitor-test.iml
 yangxq-monitor.iml
+monitor-worker/monitor-worker.iml

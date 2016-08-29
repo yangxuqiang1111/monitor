@@ -12,12 +12,10 @@ import javax.annotation.Resource;
  * 耗时监控服务
  */
 
-public class DelayProviderImpl extends BaseProviderImpl<Delay> implements DelayProvider<Delay> {
-    @Resource
-    private DelayMapper delayMapper;
+public class DelayProviderImpl extends BaseProviderImpl implements DelayProvider{
 
     @Override
-    public IBaseMapper<Delay> getBaseMapper() {
-        return   this.delayMapper;
+    public boolean insert(Delay delay) {
+        return delayService.insert(delay);
     }
 }

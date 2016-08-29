@@ -11,6 +11,18 @@
   <sql id="Base_Column_List" >
     id, business_id, time, type, delay_time
   </sql>
+  <select id="listByBusinessId" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from mt_delay
+    where business_id =#{0} AND  time>#{1} AND #{2}>=time
+  </select>
+  <select id="listByTime" resultMap="BaseResultMap" >
+    select
+     distinct business_id
+    from mt_delay
+    where time>#{0} AND #{1}>=time
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -1,9 +1,6 @@
 package com.yangxq.monitor.common.po;
 
-import java.io.Serializable;
-
-public class Business  implements Serializable{
-    private static final long serialVersionUID = 9128417440316819013L;
+public class Business {
     private Integer id;
 
     private Byte type;
@@ -17,6 +14,8 @@ public class Business  implements Serializable{
     private String phones;
 
     private String emails;
+
+    private Integer sysId;
 
     public Integer getId() {
         return id;
@@ -72,5 +71,13 @@ public class Business  implements Serializable{
 
     public void setEmails(String emails) {
         this.emails = emails == null ? null : emails.trim();
+    }
+
+    public Integer getSysId() {
+        return sysId;
+    }
+
+    public void setSysId(Integer sysId) {
+        this.sysId = sysId;
     }
 }

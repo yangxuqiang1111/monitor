@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yangxq.monitor.dao.mysql.mapper.StatisticsMapper" >
+  <resultMap id="BaseResultMap" type="com.yangxq.monitor.common.po.Statistics" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="business_id" property="businessId" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, business_id, time, type, num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mt_statistics
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mt_statistics
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yangxq.monitor.common.po.Statistics" >
+    insert into mt_statistics (id, business_id, time, 
+      type, num)
+    values (#{id,jdbcType=INTEGER}, #{businessId,jdbcType=INTEGER}, #{time,jdbcType=BIGINT},
+      #{type,jdbcType=TINYINT}, #{num,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yangxq.monitor.common.po.Statistics" >
+    insert into mt_statistics
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="businessId != null" >
+        business_id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="businessId != null" >
+        #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yangxq.monitor.common.po.Statistics" >
+    update mt_statistics
+    <set >
+      <if test="businessId != null" >
+        business_id = #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yangxq.monitor.common.po.Statistics" >
+    update mt_statistics
+    set business_id = #{businessId,jdbcType=INTEGER},
+      time = #{time,jdbcType=BIGINT},
+      type = #{type,jdbcType=TINYINT},
+      num = #{num,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
