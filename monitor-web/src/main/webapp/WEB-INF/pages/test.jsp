@@ -28,7 +28,7 @@
         var now = new Date();
         date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
     }
-    console.log(console.log(data[0]));
+    console.log(console.log(data.length));
 
     option = {
         tooltip: {

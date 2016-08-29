@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50133
 File Encoding         : 65001
 
-Date: 2016-08-29 16:38:00
+Date: 2016-08-29 21:02:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `mt_business`;
 CREATE TABLE `mt_business` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` tinyint(3) NOT NULL COMMENT '类型，1调用量，2延迟、3内存',
+  `type` tinyint(3) NOT NULL COMMENT '类型，1调用量，2延迟、3内存,4 错误',
   `des` varchar(100) NOT NULL,
   `max` int(11) NOT NULL COMMENT '告警最大值',
   `min` int(11) NOT NULL COMMENT '告警最小值',
@@ -46,7 +46,7 @@ CREATE TABLE `mt_delay` (
   `type` tinyint(3) NOT NULL COMMENT '耗时或者调用量',
   `delay_time` int(11) NOT NULL COMMENT '耗时',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mt_delay
@@ -74,6 +74,26 @@ INSERT INTO `mt_delay` VALUES ('20', '876', '1472458918', '1', '1685');
 INSERT INTO `mt_delay` VALUES ('21', '896', '1472458918', '1', '1685');
 INSERT INTO `mt_delay` VALUES ('22', '876', '1472458922', '1', '2586');
 INSERT INTO `mt_delay` VALUES ('23', '896', '1472458922', '1', '2586');
+INSERT INTO `mt_delay` VALUES ('24', '876', '1472460031', '1', '734');
+INSERT INTO `mt_delay` VALUES ('25', '896', '1472460031', '1', '734');
+INSERT INTO `mt_delay` VALUES ('26', '876', '1472460033', '1', '712');
+INSERT INTO `mt_delay` VALUES ('27', '896', '1472460033', '1', '712');
+INSERT INTO `mt_delay` VALUES ('28', '876', '1472460034', '1', '713');
+INSERT INTO `mt_delay` VALUES ('29', '896', '1472460034', '1', '713');
+INSERT INTO `mt_delay` VALUES ('30', '876', '1472460036', '1', '705');
+INSERT INTO `mt_delay` VALUES ('31', '896', '1472460036', '1', '705');
+INSERT INTO `mt_delay` VALUES ('32', '876', '1472460037', '1', '677');
+INSERT INTO `mt_delay` VALUES ('33', '896', '1472460037', '1', '677');
+INSERT INTO `mt_delay` VALUES ('34', '876', '1472460293', '1', '1211');
+INSERT INTO `mt_delay` VALUES ('35', '896', '1472460293', '1', '1211');
+INSERT INTO `mt_delay` VALUES ('36', '876', '1472460295', '1', '1010');
+INSERT INTO `mt_delay` VALUES ('37', '896', '1472460295', '1', '1010');
+INSERT INTO `mt_delay` VALUES ('38', '876', '1472460296', '1', '709');
+INSERT INTO `mt_delay` VALUES ('39', '896', '1472460296', '1', '709');
+INSERT INTO `mt_delay` VALUES ('40', '876', '1472460298', '1', '1074');
+INSERT INTO `mt_delay` VALUES ('41', '896', '1472460298', '1', '1074');
+INSERT INTO `mt_delay` VALUES ('42', '876', '1472460301', '1', '1390');
+INSERT INTO `mt_delay` VALUES ('43', '896', '1472460301', '1', '1390');
 
 -- ----------------------------
 -- Table structure for mt_statistics
@@ -86,7 +106,7 @@ CREATE TABLE `mt_statistics` (
   `type` tinyint(3) NOT NULL COMMENT '业务类型',
   `num` int(11) NOT NULL COMMENT '调用、耗时等',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mt_statistics
@@ -103,6 +123,18 @@ INSERT INTO `mt_statistics` VALUES ('10', '876', '201608291622', '1', '1685');
 INSERT INTO `mt_statistics` VALUES ('11', '896', '201608291622', '1', '1685');
 INSERT INTO `mt_statistics` VALUES ('12', '875', '201608291622', '2', '1');
 INSERT INTO `mt_statistics` VALUES ('13', '895', '201608291622', '2', '1');
+INSERT INTO `mt_statistics` VALUES ('14', '875', '201608291641', '2', '1');
+INSERT INTO `mt_statistics` VALUES ('15', '895', '201608291641', '2', '1');
+INSERT INTO `mt_statistics` VALUES ('16', '876', '201608291641', '1', '708');
+INSERT INTO `mt_statistics` VALUES ('17', '896', '201608291641', '1', '708');
+INSERT INTO `mt_statistics` VALUES ('18', '875', '201608291645', '2', '4');
+INSERT INTO `mt_statistics` VALUES ('19', '895', '201608291645', '2', '4');
+INSERT INTO `mt_statistics` VALUES ('20', '876', '201608291645', '1', '1001');
+INSERT INTO `mt_statistics` VALUES ('21', '896', '201608291645', '1', '1001');
+INSERT INTO `mt_statistics` VALUES ('22', '875', '201608291646', '2', '1');
+INSERT INTO `mt_statistics` VALUES ('23', '895', '201608291646', '2', '1');
+INSERT INTO `mt_statistics` VALUES ('24', '876', '201608291646', '1', '1390');
+INSERT INTO `mt_statistics` VALUES ('25', '896', '201608291646', '1', '1390');
 
 -- ----------------------------
 -- Table structure for mt_sys
@@ -130,7 +162,7 @@ CREATE TABLE `mt_transfer` (
   `type` tinyint(3) NOT NULL COMMENT '耗时或者调用量',
   `num` int(11) NOT NULL COMMENT '调用量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mt_transfer
@@ -155,3 +187,23 @@ INSERT INTO `mt_transfer` VALUES ('18', '875', '1472458918', '2', '1');
 INSERT INTO `mt_transfer` VALUES ('19', '895', '1472458918', '2', '1');
 INSERT INTO `mt_transfer` VALUES ('20', '875', '1472458922', '2', '1');
 INSERT INTO `mt_transfer` VALUES ('21', '895', '1472458922', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('22', '875', '1472460031', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('23', '895', '1472460031', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('24', '875', '1472460033', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('25', '895', '1472460033', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('26', '875', '1472460034', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('27', '895', '1472460034', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('28', '875', '1472460036', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('29', '895', '1472460036', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('30', '875', '1472460037', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('31', '895', '1472460037', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('32', '875', '1472460293', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('33', '895', '1472460293', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('34', '875', '1472460295', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('35', '895', '1472460295', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('36', '875', '1472460296', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('37', '895', '1472460296', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('38', '875', '1472460298', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('39', '895', '1472460298', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('40', '875', '1472460301', '2', '1');
+INSERT INTO `mt_transfer` VALUES ('41', '895', '1472460301', '2', '1');
