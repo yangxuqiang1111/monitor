@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="monitor-worker" owner="yangxq" organization="fdyxq"/>
+
+    <dubbo:registry id="monitor" protocol="zookeeper" address="${monitor_zookeeper}" default="true"/>
+
+    <dubbo:reference interface="com.yangxq.monitor.common.api.StatisticProvider" id="statisticProvider" timeout="3000"/>
+</beans>

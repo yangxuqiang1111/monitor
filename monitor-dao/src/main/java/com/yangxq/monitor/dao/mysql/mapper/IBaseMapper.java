@@ -17,4 +17,6 @@ public interface IBaseMapper<T> {
     int updateByPrimaryKeySelective(T record);
 
     int updateByPrimaryKey(Delay record);
+
+
 }

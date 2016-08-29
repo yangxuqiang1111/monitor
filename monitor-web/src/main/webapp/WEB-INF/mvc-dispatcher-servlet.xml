@@ -1,0 +1,100 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 启用注解 -->
+    <context:annotation-config/>
+    <!-- spring扫描 -->
+    <context:component-scan base-package="com.yangxq.monitor.*"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:config.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 引用各模块的spring配置文件 -->
+    <import resource="classpath*:dubbox/dubbox-monitor-consumer.xml"></import>
+
+
+    <bean name="jsonConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <!--<property name="objectMapper">-->
+            <!--<bean id="jacksonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">-->
+                <!--&lt;!&ndash;<property name="dateFormat">&ndash;&gt;-->
+                <!--&lt;!&ndash;<bean class="java.text.SimpleDateFormat">&ndash;&gt;-->
+                <!--&lt;!&ndash;<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;</bean>&ndash;&gt;-->
+                <!--&lt;!&ndash;</property>&ndash;&gt;-->
+                <!--<property name="serializationInclusion">-->
+                    <!--&lt;!&ndash; 把枚举类型转为一个bean才能注入, 不序列化空值属性 &ndash;&gt;-->
+                    <!--&lt;!&ndash; <value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value> &ndash;&gt;-->
+                    <!--<util:constant static-field="com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL"/>-->
+                <!--</property>-->
+            <!--</bean>-->
+        <!--</property>-->
+    </bean>
+    <!-- springMVC 3.1 以后使用  启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+    </bean>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonConverter"></ref>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 异常统一处理 -->
+    <bean name="liveExceptionResolver"
+          class="com.yangxq.monitor.web.common.exception.MonitorExceptionResolver">
+    </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--<mvc:mapping path="/**"/>-->
+            <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+            <mvc:mapping path="/statistic/*"/>
+
+            <bean class="com.yangxq.monitor.web.common.interceptor.CommonInterceptor"/>
+        </mvc:interceptor>
+        <!--<mvc:interceptor>-->
+        <!--<mvc:mapping path="/connector/*"/>-->
+        <!--<mvc:mapping path="/roomHost/*"/>-->
+        <!--<mvc:mapping path="/user/*"/>-->
+        <!--<mvc:mapping path="/black/*"/>-->
+        <!--<mvc:mapping path="/pintuan/*"/>-->
+        <!--<mvc:mapping path="/coupon/*"/>-->
+        <!--<mvc:mapping path="/bigR/*"/>-->
+        <!--<mvc:mapping path="/room/*"/>-->
+        <!--<mvc:mapping path="/share/*"/>-->
+        <!--<bean class="com.chuchujie.live.web.interceptor.AuthInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+</mvc:interceptors>
+    <mvc:resources location="/" mapping="/**/*.html"/>
+    <mvc:resources location="/" mapping="/**/*.js"/>
+    <mvc:resources location="/" mapping="/**/*.css"/>
+    <mvc:resources location="/" mapping="/**/*.png"/>
+    <mvc:resources location="/" mapping="/**/*.gif"/>
+    <mvc:resources location="/" mapping="/**/*.jpg"/>
+    <mvc:resources location="/" mapping="/**/*.woff"/>
+    <mvc:resources location="/" mapping="/**/*.ttf"/>
+    <mvc:resources location="/" mapping="/**/*.swf"/>
+
+</beans>

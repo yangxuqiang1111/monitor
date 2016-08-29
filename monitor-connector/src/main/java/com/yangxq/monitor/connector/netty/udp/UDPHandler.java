@@ -46,11 +46,11 @@ public class UDPHandler extends SimpleChannelInboundHandler<DatagramPacket> {
         // 判断消息类型
         InetSocketAddress recipient = msg.recipient();
         int port = recipient.getPort();
-        int businessType = 0;
+        byte businessType = 0;
         if (port == commonConfig.getUdpDelay()) {
-            businessType = Global.UDP_DELAY;
+            businessType = Global.BusinessType.DELAY.value;
         } else if (port == commonConfig.getUdpTransfer()) {
-            businessType = Global.UDP_TRANSFER;
+            businessType = Global.BusinessType.TRANSFER.value;
         } else {
             log.error("消息[" + content + "]类型错误，不予处理");
         }

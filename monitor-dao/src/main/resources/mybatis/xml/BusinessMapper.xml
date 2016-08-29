@@ -9,9 +9,10 @@
     <result column="min" property="min" jdbcType="INTEGER" />
     <result column="phones" property="phones" jdbcType="VARCHAR" />
     <result column="emails" property="emails" jdbcType="VARCHAR" />
+    <result column="sys_id" property="sysId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, type, des, max, min, phones, emails
+    id, type, des, max, min, phones, emails, sys_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -25,11 +26,11 @@
   </delete>
   <insert id="insert" parameterType="com.yangxq.monitor.common.po.Business" >
     insert into mt_business (id, type, des, 
-      max, min, phones, emails
-      )
+      max, min, phones, emails, 
+      sys_id)
     values (#{id,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{des,jdbcType=VARCHAR}, 
-      #{max,jdbcType=INTEGER}, #{min,jdbcType=INTEGER}, #{phones,jdbcType=VARCHAR}, #{emails,jdbcType=VARCHAR}
-      )
+      #{max,jdbcType=INTEGER}, #{min,jdbcType=INTEGER}, #{phones,jdbcType=VARCHAR}, #{emails,jdbcType=VARCHAR}, 
+      #{sysId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yangxq.monitor.common.po.Business" >
     insert into mt_business
@@ -55,6 +56,9 @@
       <if test="emails != null" >
         emails,
       </if>
+      <if test="sysId != null" >
+        sys_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -77,6 +81,9 @@
       </if>
       <if test="emails != null" >
         #{emails,jdbcType=VARCHAR},
+      </if>
+      <if test="sysId != null" >
+        #{sysId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -101,6 +108,9 @@
       <if test="emails != null" >
         emails = #{emails,jdbcType=VARCHAR},
       </if>
+      <if test="sysId != null" >
+        sys_id = #{sysId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -111,7 +121,8 @@
       max = #{max,jdbcType=INTEGER},
       min = #{min,jdbcType=INTEGER},
       phones = #{phones,jdbcType=VARCHAR},
-      emails = #{emails,jdbcType=VARCHAR}
+      emails = #{emails,jdbcType=VARCHAR},
+      sys_id = #{sysId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

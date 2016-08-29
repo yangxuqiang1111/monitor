@@ -1,7 +1,9 @@
 package com.yangxq.monitor.common.utils;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -61,6 +63,40 @@ public class DateUtil {
     }
 
     /**
+     * 获取当前的时间戳 精确到分钟
+     * @return
+     */
+    public static int getNowMinute(){
+        int nowSecond = getNowSecond();
+        Instant instant = Instant.ofEpochSecond(nowSecond);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+       return nowSecond- localDateTime.getSecond();
+    }
+
+
+
+    /**
+     * 获取格式为yyyyMMddHHmm 的日期
+     * @param nowMinute
+     * @return
+     */
+    public static Long getFormatTime(int nowMinute) {
+        Instant instant = Instant.ofEpochSecond(nowMinute);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        return Long.parseLong(localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmm")));
+    }
+
+    /**
+     * 获取格式为yyyy-MM-dd HH:mm 的日期
+     * @param nowMinute
+     * @return
+     */
+    public static String getFormDateString(int nowMinute){
+        Instant instant = Instant.ofEpochSecond(nowMinute);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm"));
+    }
+    /**
      * 获取当前时间(毫秒数)
      *
      * @return
@@ -69,18 +105,16 @@ public class DateUtil {
         return System.currentTimeMillis();
     }
 
-    public static void main(String[] args) {
-        long beg = System.currentTimeMillis();
-        for (int i = 0; i < 1000000; i++) {
-            getFormatDateTime();
-        }
-        long end = System.currentTimeMillis();
-        System.out.println("FormatDateTime时间差:" + (end - beg));
-        long beg1 = System.currentTimeMillis();
-        for (int i = 0; i < 1000000; i++) {
-            getFormatTime();
-        }
-        long end1 = System.currentTimeMillis();
-        System.out.println("FormatTime时间差:" + (end1 - beg1));
+    public static int getTodayBegTime(){
+        int nowSecond = getNowSecond();
+        Instant instant = Instant.ofEpochSecond(nowSecond);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        return nowSecond-localDateTime.getHour()*60*60-localDateTime.getMinute()*60-localDateTime.getSecond();
     }
+
+    public static void main(String[] args) {
+        System.out.println(getTodayBegTime());
+    }
+
+
 }

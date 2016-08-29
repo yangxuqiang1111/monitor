@@ -11,11 +11,10 @@ import javax.annotation.Resource;
  * Created by Yangxq on 2016/8/26.
  * 调用监控服务
  */
-public class TransferProviderImpl extends BaseProviderImpl<Transfer> implements TransferProvider<Transfer> {
-    @Resource
-    private TransferMapper transferMapper;
+public class TransferProviderImpl extends BaseProviderImpl implements TransferProvider {
+
     @Override
-    public IBaseMapper<Transfer> getBaseMapper() {
-        return this.transferMapper;
+    public boolean insert(Transfer transfer) {
+        return transferService.insert(transfer);
     }
 }

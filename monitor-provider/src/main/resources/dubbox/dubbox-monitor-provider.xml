@@ -29,12 +29,15 @@
 
 
     <bean class="com.yangxq.monitor.provider.impl.BusinessProviderImpl" id="businessProvider" />
-    <dubbo:service interface="com.yangxq.monitor.common.api.IBaseProvider" ref="businessProvider" />
+    <dubbo:service interface="com.yangxq.monitor.common.api.BusinessProvider" ref="businessProvider" />
 
     <bean class="com.yangxq.monitor.provider.impl.DelayProviderImpl" id="delayProvider" />
-    <dubbo:service interface="com.yangxq.monitor.common.api.IBaseProvider" ref="delayProvider" />
+    <dubbo:service interface="com.yangxq.monitor.common.api.DelayProvider" ref="delayProvider" />
 
     <bean class="com.yangxq.monitor.provider.impl.TransferProviderImpl" id="transferProvider"/>
-    <dubbo:service interface="com.yangxq.monitor.common.api.IBaseProvider" ref="transferProvider"/>
+    <dubbo:service interface="com.yangxq.monitor.common.api.TransferProvider" ref="transferProvider"/>
+
+    <bean class="com.yangxq.monitor.provider.impl.StatisticProviderImpl" id="statisticProvider"/>
+    <dubbo:service interface="com.yangxq.monitor.common.api.StatisticProvider" ref="statisticProvider" />
 
 </beans>

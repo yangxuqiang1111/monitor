@@ -67,6 +67,14 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
         <property name="mapperInterface" value="com.yangxq.monitor.dao.mysql.mapper.TransferMapper" />
     </bean>
+    <bean id="statisticsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+        <property name="mapperInterface" value="com.yangxq.monitor.dao.mysql.mapper.StatisticsMapper" />
+    </bean>
+    <bean id="sysMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+        <property name="mapperInterface" value="com.yangxq.monitor.dao.mysql.mapper.SysMapper" />
+    </bean>
     <!--&lt;!&ndash; 配置自定义的SqlSessionTemplate模板，注入相关配置 &ndash;&gt;-->
     <!--<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">-->
         <!--<constructor-arg ref="sqlSessionFactory" />-->
