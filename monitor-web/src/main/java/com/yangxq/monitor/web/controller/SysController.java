@@ -30,7 +30,6 @@ public class SysController {
         List<Sys> list = sysProvider.list();
         modelAndView.addObject("sys",list);
         modelAndView.setViewName("test");
-
         return modelAndView;
     }
 }
