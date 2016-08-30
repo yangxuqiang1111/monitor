@@ -43,4 +43,7 @@
     <bean class="com.yangxq.monitor.provider.impl.SysProviderImpl" id="sysProvider" />
     <dubbo:service interface="com.yangxq.monitor.common.api.SysProvider" ref="sysProvider" />
 
+    <bean class="com.yangxq.monitor.provider.impl.EmailProviderImpl" id="emailProvider" />
+    <dubbo:service interface="com.yangxq.monitor.common.api.EmailProvider" ref="emailProvider" />
+
 </beans>

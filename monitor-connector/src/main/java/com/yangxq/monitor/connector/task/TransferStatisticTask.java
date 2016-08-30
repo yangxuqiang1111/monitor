@@ -1,6 +1,9 @@
 package com.yangxq.monitor.connector.task;
 
+import com.yangxq.monitor.common.api.BusinessProvider;
+import com.yangxq.monitor.common.api.EmailProvider;
 import com.yangxq.monitor.common.api.StatisticProvider;
+import com.yangxq.monitor.common.po.Business;
 import com.yangxq.monitor.common.po.Statistics;
 import com.yangxq.monitor.common.utils.DateUtil;
 import com.yangxq.monitor.common.utils.Global;
@@ -20,9 +23,15 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Component
 public class TransferStatisticTask {
-    private Logger log=Logger.getLogger(TransferStatisticTask.class);
+    private Logger log = Logger.getLogger(TransferStatisticTask.class);
     @Resource
     private StatisticProvider statisticProvider;
+
+    @Resource
+    private BusinessProvider businessProvider;
+
+    @Resource
+    private EmailProvider emailProvider;
 
     /**
      *
@@ -49,14 +58,42 @@ public class TransferStatisticTask {
         ConcurrentHashMap<Integer, AtomicInteger> transferMap = StatisticMap.getInstance().getTransferMap();
         for (Iterator<Map.Entry<Integer, AtomicInteger>> iterator = transferMap.entrySet().iterator(); iterator.hasNext(); ) {
             Map.Entry<Integer, AtomicInteger> next = iterator.next();
+            Integer businessId = next.getKey();
+            int transferNum = next.getValue().intValue();
+            Business business = businessProvider.get(businessId);
+            if (business.getType() == Global.BusinessType.ERROR.value) {
+                if (transferNum >= business.getMax()) {
+                    // 发送邮件
+                    emailProvider.senderTextMail(getEmailSubject(business), business.getEmails().split(","), getEmailText(business));
+                }
+
+            }
             Statistics statistics = new Statistics();
-            int transferNum =  next.getValue().intValue();
+
             statistics.setNum(transferNum);
-            statistics.setBusinessId(next.getKey());
+            statistics.setBusinessId(businessId);
             statistics.setType(Global.BusinessType.TRANSFER.value);
             statistics.setTime(Long.valueOf(nowMinute));
             statisticProvider.insert(statistics);
         }
 
+    }
+
+    /**
+     * 获取邮件内容
+     * @param business
+     * @return
+     */
+    private String getEmailText(Business business) {
+        return business.getTitle()+"错误数超过最大值"+business.getMax();
+    }
+
+    /**
+     * 获取邮件主题
+     * @param business
+     * @return
+     */
+    private String getEmailSubject(Business business) {
+        return business.getTitle()+"错误数超过最大值"+business.getMax();
     }
 }

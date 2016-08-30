@@ -2,6 +2,7 @@ package com.yangxq.monitor.provider.starter;
 
 import com.yangxq.monitor.common.utils.DaemonThread;
 import com.yangxq.monitor.common.utils.SpringManager;
+import com.yangxq.monitor.provider.service.impl.EmailServiceImpl;
 import org.apache.log4j.Logger;
 
 /**
@@ -13,6 +14,7 @@ public class MonitorProviderMain {
     public static void main(String[] args) {
         try {
             SpringManager.getInstance().init();
+
             new DaemonThread().start();
         } catch (Exception e) {
             log.error(e.getMessage(), e);

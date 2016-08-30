@@ -4,10 +4,7 @@ import com.yangxq.monitor.common.po.Business;
 import com.yangxq.monitor.common.po.Delay;
 import com.yangxq.monitor.common.po.Statistics;
 import com.yangxq.monitor.common.po.Transfer;
-import com.yangxq.monitor.provider.service.BusinessService;
-import com.yangxq.monitor.provider.service.DelayService;
-import com.yangxq.monitor.provider.service.StatisticService;
-import com.yangxq.monitor.provider.service.TransferService;
+import com.yangxq.monitor.provider.service.*;
 
 import javax.annotation.Resource;
 
@@ -25,6 +22,9 @@ public abstract class BaseProviderImpl {
 
     @Resource
     TransferService<Transfer> transferService;
+
+    @Resource
+    EmailService emailService;
 
     
 

@@ -17,7 +17,8 @@ public class Global {
 
     public enum BusinessType{
         DELAY((byte) 1), // 耗时
-        TRANSFER((byte) 2);//调用量
+        TRANSFER((byte) 2),//调用量
+        ERROR((byte)3); // 错误
         public byte value;
         BusinessType(byte value){
             this.value=value;

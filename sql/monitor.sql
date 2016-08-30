@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50133
 File Encoding         : 65001
 
-Date: 2016-08-29 21:02:16
+Date: 2016-08-30 19:16:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,18 +22,20 @@ DROP TABLE IF EXISTS `mt_business`;
 CREATE TABLE `mt_business` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` tinyint(3) NOT NULL COMMENT '类型，1调用量，2延迟、3内存,4 错误',
-  `des` varchar(100) NOT NULL,
+  `des` varchar(100) NOT NULL DEFAULT '',
   `max` int(11) NOT NULL COMMENT '告警最大值',
   `min` int(11) NOT NULL COMMENT '告警最小值',
   `phones` varchar(255) NOT NULL COMMENT '手机号码',
   `emails` varchar(255) NOT NULL COMMENT '邮箱',
   `sys_id` int(11) NOT NULL COMMENT '从属的系统id',
+  `title` varchar(50) NOT NULL COMMENT '标题',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=876 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mt_business
 -- ----------------------------
+INSERT INTO `mt_business` VALUES ('875', '2', '', '100', '10', '18329029859', '18329029859@163.com', '1', '房间列表调用量');
 
 -- ----------------------------
 -- Table structure for mt_delay
@@ -106,35 +108,39 @@ CREATE TABLE `mt_statistics` (
   `type` tinyint(3) NOT NULL COMMENT '业务类型',
   `num` int(11) NOT NULL COMMENT '调用、耗时等',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mt_statistics
 -- ----------------------------
-INSERT INTO `mt_statistics` VALUES ('2', '875', '201608291617', '2', '1');
-INSERT INTO `mt_statistics` VALUES ('3', '895', '201608291617', '2', '1');
-INSERT INTO `mt_statistics` VALUES ('4', '876', '201608291617', '1', '930');
-INSERT INTO `mt_statistics` VALUES ('5', '896', '201608291617', '1', '930');
-INSERT INTO `mt_statistics` VALUES ('6', '876', '201608291620', '1', '759');
-INSERT INTO `mt_statistics` VALUES ('7', '896', '201608291620', '1', '759');
-INSERT INTO `mt_statistics` VALUES ('8', '875', '201608291620', '2', '1');
-INSERT INTO `mt_statistics` VALUES ('9', '895', '201608291620', '2', '1');
-INSERT INTO `mt_statistics` VALUES ('10', '876', '201608291622', '1', '1685');
-INSERT INTO `mt_statistics` VALUES ('11', '896', '201608291622', '1', '1685');
-INSERT INTO `mt_statistics` VALUES ('12', '875', '201608291622', '2', '1');
-INSERT INTO `mt_statistics` VALUES ('13', '895', '201608291622', '2', '1');
-INSERT INTO `mt_statistics` VALUES ('14', '875', '201608291641', '2', '1');
-INSERT INTO `mt_statistics` VALUES ('15', '895', '201608291641', '2', '1');
-INSERT INTO `mt_statistics` VALUES ('16', '876', '201608291641', '1', '708');
-INSERT INTO `mt_statistics` VALUES ('17', '896', '201608291641', '1', '708');
-INSERT INTO `mt_statistics` VALUES ('18', '875', '201608291645', '2', '4');
-INSERT INTO `mt_statistics` VALUES ('19', '895', '201608291645', '2', '4');
-INSERT INTO `mt_statistics` VALUES ('20', '876', '201608291645', '1', '1001');
-INSERT INTO `mt_statistics` VALUES ('21', '896', '201608291645', '1', '1001');
-INSERT INTO `mt_statistics` VALUES ('22', '875', '201608291646', '2', '1');
-INSERT INTO `mt_statistics` VALUES ('23', '895', '201608291646', '2', '1');
-INSERT INTO `mt_statistics` VALUES ('24', '876', '201608291646', '1', '1390');
-INSERT INTO `mt_statistics` VALUES ('25', '896', '201608291646', '1', '1390');
+INSERT INTO `mt_statistics` VALUES ('26', '875', '1472538000', '2', '3');
+INSERT INTO `mt_statistics` VALUES ('27', '895', '1472538000', '2', '3');
+INSERT INTO `mt_statistics` VALUES ('28', '896', '1472538000', '1', '884');
+INSERT INTO `mt_statistics` VALUES ('29', '876', '1472538000', '1', '884');
+INSERT INTO `mt_statistics` VALUES ('30', '896', '1472538300', '1', '814');
+INSERT INTO `mt_statistics` VALUES ('31', '876', '1472538300', '1', '814');
+INSERT INTO `mt_statistics` VALUES ('32', '875', '1472538300', '2', '3');
+INSERT INTO `mt_statistics` VALUES ('33', '895', '1472538300', '2', '3');
+INSERT INTO `mt_statistics` VALUES ('34', '875', '1472538360', '2', '1');
+INSERT INTO `mt_statistics` VALUES ('35', '895', '1472538360', '2', '1');
+INSERT INTO `mt_statistics` VALUES ('36', '896', '1472538360', '1', '970');
+INSERT INTO `mt_statistics` VALUES ('37', '876', '1472538360', '1', '970');
+INSERT INTO `mt_statistics` VALUES ('38', '896', '1472538480', '1', '1178');
+INSERT INTO `mt_statistics` VALUES ('39', '876', '1472538480', '1', '1178');
+INSERT INTO `mt_statistics` VALUES ('40', '875', '1472538480', '2', '2');
+INSERT INTO `mt_statistics` VALUES ('41', '895', '1472538480', '2', '1');
+INSERT INTO `mt_statistics` VALUES ('42', '875', '1472538540', '2', '1');
+INSERT INTO `mt_statistics` VALUES ('43', '895', '1472538540', '2', '2');
+INSERT INTO `mt_statistics` VALUES ('44', '896', '1472538540', '1', '1144');
+INSERT INTO `mt_statistics` VALUES ('45', '876', '1472538540', '1', '1144');
+INSERT INTO `mt_statistics` VALUES ('46', '896', '1472547000', '1', '1089');
+INSERT INTO `mt_statistics` VALUES ('47', '876', '1472547000', '1', '1089');
+INSERT INTO `mt_statistics` VALUES ('48', '875', '1472547000', '2', '5');
+INSERT INTO `mt_statistics` VALUES ('49', '895', '1472547000', '2', '5');
+INSERT INTO `mt_statistics` VALUES ('50', '875', '1472547120', '2', '10');
+INSERT INTO `mt_statistics` VALUES ('51', '895', '1472547120', '2', '10');
+INSERT INTO `mt_statistics` VALUES ('52', '896', '1472547120', '1', '783');
+INSERT INTO `mt_statistics` VALUES ('53', '876', '1472547120', '1', '783');
 
 -- ----------------------------
 -- Table structure for mt_sys
