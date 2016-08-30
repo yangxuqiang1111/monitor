@@ -11,6 +11,7 @@ import com.yangxq.monitor.web.common.controller.BaseController;
 import com.yangxq.monitor.web.common.model.ApiParams;
 import com.yangxq.monitor.web.common.model.ApiResult;
 import com.yangxq.monitor.web.common.utils.ApiResultUtil;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +29,6 @@ import java.util.Map;
 @RequestMapping("statistic")
 @Controller
 public class StatisticController extends BaseController {
-
     @Resource
     private StatisticProvider statisticProvider;
 
@@ -45,26 +45,29 @@ public class StatisticController extends BaseController {
     @RequestMapping(value = "get", method = RequestMethod.POST)
     public ApiResult get(HttpServletRequest request) {
         String idStr = request.getParameter("id");
-        int id = 0;
-        if (!StringUtil.isEmpty(idStr)) {
-            id = Integer.parseInt(idStr);
+
+        if (!StringUtil.isNumeric(idStr)) {
+            log.error("id[" + idStr + "]不是数字");
+            return ApiResultUtil.failed("id 不是数字");
         }
+        int id = Integer.parseInt(idStr);
         String typeStr = request.getParameter("type");
-        int type = 0;
-        if (!StringUtil.isEmpty(typeStr)) {
-            type = Integer.parseInt(typeStr);
+        if (!StringUtil.isNumeric(typeStr)) {
+            log.error("type[" + typeStr + "]不是数字");
+            return ApiResultUtil.failed("type 不是数字");
         }
+        int type = Integer.parseInt(typeStr);
         String dateStr = request.getParameter("date");
-        int date = 0;
-        if (!StringUtil.isEmpty(dateStr)) {
+        int date = DateUtil.getNowMinute();
+        if (StringUtil.isNumeric(dateStr)) {
             date = Integer.parseInt(dateStr);
         }
         Business business = businessProvider.get(id);
         if (business == null) {
-            log.error("id["+id+"]不存在business");
+            log.error("id[" + id + "]不存在business");
             return ApiResultUtil.failed("");
         }
-        StatisticsDataModel statisticsDataModel = statisticProvider.listByTime(875, type, DateUtil.getNowMinute());
+        StatisticsDataModel statisticsDataModel = statisticProvider.listByTime(875, type, date);
 
         List<Integer> dataArr = statisticsDataModel.getDataArr();
 

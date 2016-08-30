@@ -64,19 +64,20 @@ public class DateUtil {
 
     /**
      * 获取当前的时间戳 精确到分钟
+     *
      * @return
      */
-    public static int getNowMinute(){
+    public static int getNowMinute() {
         int nowSecond = getNowSecond();
         Instant instant = Instant.ofEpochSecond(nowSecond);
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-       return nowSecond- localDateTime.getSecond();
+        return nowSecond - localDateTime.getSecond();
     }
-
 
 
     /**
      * 获取格式为yyyyMMddHHmm 的日期
+     *
      * @param nowMinute
      * @return
      */
@@ -88,14 +89,16 @@ public class DateUtil {
 
     /**
      * 获取格式为yyyy-MM-dd HH:mm 的日期
+     *
      * @param nowMinute
      * @return
      */
-    public static String getFormDateString(int nowMinute){
+    public static String getFormDateString(int nowMinute) {
         Instant instant = Instant.ofEpochSecond(nowMinute);
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         return localDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm"));
     }
+
     /**
      * 获取当前时间(毫秒数)
      *
@@ -105,33 +108,41 @@ public class DateUtil {
         return System.currentTimeMillis();
     }
 
-    public static int getTodayBegTime(){
+    /**
+     * 获取凌晨0:00 的时间戳
+     * @return
+     */
+    public static int getTodayBegTime() {
         int nowSecond = getNowSecond();
         Instant instant = Instant.ofEpochSecond(nowSecond);
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-        return nowSecond-localDateTime.getHour()*60*60-localDateTime.getMinute()*60-localDateTime.getSecond();
+        return nowSecond - localDateTime.getHour() * 60 * 60 - localDateTime.getMinute() * 60 - localDateTime.getSecond();
     }
 
     /**
      * 获取今天8点的时间戳
+     *
      * @return
      */
-    public static int getTodayEight(){
+    public static int getTodayEight() {
         int nowSecond = getNowSecond();
         Instant instant = Instant.ofEpochSecond(nowSecond);
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-        return nowSecond-localDateTime.getHour()*60*60-localDateTime.getMinute()*60-localDateTime.getSecond()+8*60*60;
+        return nowSecond - localDateTime.getHour() * 60 * 60 - localDateTime.getMinute() * 60 - localDateTime.getSecond() + 8 * 60 * 60;
     }
-
 
 
     public static void main(String[] args) {
         System.out.println(getTodayBegTime());
     }
 
-
+    /**
+     * 获取格式为 yyyy-MM-dd的日期
+     *
+     * @return
+     */
     public static String getFormatDateStr() {
         LocalDateTime now = LocalDateTime.now();
-        return now.format( DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

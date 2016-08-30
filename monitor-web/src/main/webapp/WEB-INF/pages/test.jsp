@@ -29,7 +29,7 @@
         var date = $('#date').val();
         $.post("${ctx}/statistic/get",{"id":id,"type":type,"desc":desc,"date":date},function(e){
             if(e.status == 0){
-                var title = e.data.title
+                var title = e.data.title;
                 var subtitle = e.data.subtitle;
                 var ytitle = e.data.ytitle;
                 var name = e.data.name;

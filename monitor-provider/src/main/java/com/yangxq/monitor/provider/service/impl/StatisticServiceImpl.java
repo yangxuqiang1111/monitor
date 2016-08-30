@@ -26,12 +26,12 @@ public class StatisticServiceImpl extends BaseServiceImpl<Statistics> implements
     }
 
     @Override
-    public StatisticsDataModel list(int businessId,int type, int endTime) {
+    public StatisticsDataModel list(int businessId, int type, int endTime) {
         int beg = DateUtil.getTodayBegTime();
         List<Statistics> list = statisticsMapper.list(businessId, beg, endTime);
         int total = (endTime - beg) / 60;
-        List<Integer> dataArr=  new ArrayList<>(total);
-        List<String>dates=new ArrayList<>(total);
+        List<Integer> dataArr = new ArrayList<>(total);
+//        List<String>dates=new ArrayList<>(total);
         while (beg < endTime) {
             Statistics statistics = null;
             for (int i = 0; i < list.size(); i++) {
@@ -42,16 +42,16 @@ public class StatisticServiceImpl extends BaseServiceImpl<Statistics> implements
                 }
             }
             if (statistics != null) {
-                dataArr.add( statistics.getNum());
+                dataArr.add(statistics.getNum());
             } else {
-                dataArr.add( 0);
+                dataArr.add(0);
             }
-            dates.add(DateUtil.getFormDateString(beg));
+//            dates.add(DateUtil.getFormDateString(beg));
             beg += 60;
         }
         StatisticsDataModel statisticsDataModel = new StatisticsDataModel();
         statisticsDataModel.setDataArr(dataArr);
-        statisticsDataModel.setDateArr(dates);
+//        statisticsDataModel.setDateArr(dates);
         return statisticsDataModel;
     }
 }

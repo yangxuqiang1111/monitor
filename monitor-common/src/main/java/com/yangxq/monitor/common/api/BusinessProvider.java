@@ -1,7 +1,8 @@
 package com.yangxq.monitor.common.api;
 
 import com.yangxq.monitor.common.po.Business;
-import com.yangxq.monitor.common.po.Statistics;
+
+import java.util.List;
 
 /**
  * Created by Yangxq on 2016/8/26.
@@ -20,4 +21,12 @@ public interface BusinessProvider{
      * @return
      */
     Business get(int id);
+
+    /**
+     * 根据sysId 查询业务
+     * @param sysId
+     * @return
+     */
+    List<Business> listBySysId(int sysId);
+
 }
