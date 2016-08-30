@@ -20,6 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Yangxq on 2016/8/29.
+ * 调用量（错误数）定时器
  */
 @Component
 public class TransferStatisticTask {
@@ -68,11 +69,11 @@ public class TransferStatisticTask {
                 }
 
             }
-            Statistics statistics = new Statistics();
 
+            Statistics statistics = new Statistics();
+            statistics.setType(business.getType());
             statistics.setNum(transferNum);
             statistics.setBusinessId(businessId);
-            statistics.setType(Global.BusinessType.TRANSFER.value);
             statistics.setTime(Long.valueOf(nowMinute));
             statisticProvider.insert(statistics);
         }

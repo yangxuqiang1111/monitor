@@ -36,7 +36,7 @@ public class BusinessController {
     @RequestMapping(value = "list", method = RequestMethod.POST)
     public ApiResult get(HttpServletRequest request) {
         String sysIdStr = request.getParameter("id");
-        if (StringUtil.isEmpty(sysIdStr)){
+        if (!StringUtil.isNumeric(sysIdStr)){
             return ApiResultUtil.failed("id 为空");
         }
         int sysId=Integer.parseInt(sysIdStr);

@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by Yangxq on 2016/8/29.
  */
-@Component
+//@Component
 public class TransferStatisticTask {
     private Logger log=Logger.getLogger(TransferStatisticTask.class);
     @Resource
@@ -47,20 +47,20 @@ public class TransferStatisticTask {
 //            statistics.setTime(Long.valueOf(nowMinute));
 //            statisticsMapper.insert(statistics);
 //        }
-
-        int nowMinute = DateUtil.getNowMinute();
-        log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
-        ConcurrentHashMap<Integer, AtomicInteger> transferMap = StatisticMap.getInstance().getTransferMap();
-        for (Iterator<Map.Entry<Integer, AtomicInteger>> iterator = transferMap.entrySet().iterator(); iterator.hasNext(); ) {
-            Map.Entry<Integer, AtomicInteger> next = iterator.next();
-            Statistics statistics = new Statistics();
-            int transferNum =  next.getValue().intValue();
-            statistics.setNum(transferNum);
-            statistics.setBusinessId(next.getKey());
-            statistics.setType(Global.BusinessType.TRANSFER.value);
-            statistics.setTime(Long.valueOf(nowMinute));
-            statisticsMapper.insert(statistics);
-        }
+//
+//        int nowMinute = DateUtil.getNowMinute();
+//        log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
+//        ConcurrentHashMap<Integer, AtomicInteger> transferMap = StatisticMap.getInstance().getTransferMap();
+//        for (Iterator<Map.Entry<Integer, AtomicInteger>> iterator = transferMap.entrySet().iterator(); iterator.hasNext(); ) {
+//            Map.Entry<Integer, AtomicInteger> next = iterator.next();
+//            Statistics statistics = new Statistics();
+//            int transferNum =  next.getValue().intValue();
+//            statistics.setNum(transferNum);
+//            statistics.setBusinessId(next.getKey());
+//            statistics.setType(Global.BusinessType.TRANSFER.value);
+//            statistics.setTime(Long.valueOf(nowMinute));
+//            statisticsMapper.insert(statistics);
+//        }
 
     }
 }

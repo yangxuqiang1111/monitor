@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Yangxq on 2016/8/29.
+ * 耗时 统计定时器
  */
 @Component
 public class DelayStatisticTask {

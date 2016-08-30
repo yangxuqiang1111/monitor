@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Created by Yangxq on 2016/8/29.
  */
-@Component
+//@Component
 public class DelayStatisticTask {
     private Logger log = Logger.getLogger(DelayStatisticTask.class);
     @Resource
@@ -53,19 +53,19 @@ public class DelayStatisticTask {
 //           statistics.setTime(Long.valueOf(nowMinute));
 //           statisticsMapper.insert(statistics);
 //       }
-        int nowMinute = DateUtil.getNowMinute();
-        log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
-        ConcurrentHashMap<Integer, AtomicInteger> delayMap = StatisticMap.getInstance().getDelayMap();
-        ConcurrentHashMap<Integer, AtomicInteger> delayTimeMap = StatisticMap.getInstance().getDelayTimeMap();
-        for (Iterator<Map.Entry<Integer, AtomicInteger>> iterator = delayMap.entrySet().iterator(); iterator.hasNext(); ) {
-            Map.Entry<Integer, AtomicInteger> next = iterator.next();
-            Statistics statistics = new Statistics();
-            int delayTime = (int) Math.ceil(next.getValue().intValue() / delayTimeMap.get(next.getKey()).intValue());
-            statistics.setNum(delayTime);
-            statistics.setBusinessId(next.getKey());
-            statistics.setType(Global.BusinessType.DELAY.value);
-            statistics.setTime(Long.valueOf(nowMinute));
-            statisticsMapper.insert(statistics);
-        }
+//        int nowMinute = DateUtil.getNowMinute();
+//        log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
+//        ConcurrentHashMap<Integer, AtomicInteger> delayMap = StatisticMap.getInstance().getDelayMap();
+//        ConcurrentHashMap<Integer, AtomicInteger> delayTimeMap = StatisticMap.getInstance().getDelayTimeMap();
+//        for (Iterator<Map.Entry<Integer, AtomicInteger>> iterator = delayMap.entrySet().iterator(); iterator.hasNext(); ) {
+//            Map.Entry<Integer, AtomicInteger> next = iterator.next();
+//            Statistics statistics = new Statistics();
+//            int delayTime = (int) Math.ceil(next.getValue().intValue() / delayTimeMap.get(next.getKey()).intValue());
+//            statistics.setNum(delayTime);
+//            statistics.setBusinessId(next.getKey());
+//            statistics.setType(Global.BusinessType.DELAY.value);
+//            statistics.setTime(Long.valueOf(nowMinute));
+//            statisticsMapper.insert(statistics);
+//        }
     }
 }
