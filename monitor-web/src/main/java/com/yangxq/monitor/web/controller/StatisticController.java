@@ -45,23 +45,25 @@ public class StatisticController extends BaseController {
     @RequestMapping(value = "get", method = RequestMethod.POST)
     public ApiResult get(HttpServletRequest request) {
         String idStr = request.getParameter("id");
-
         if (!StringUtil.isNumeric(idStr)) {
             log.error("id[" + idStr + "]不是数字");
             return ApiResultUtil.failed("id 不是数字");
         }
         int id = Integer.parseInt(idStr);
+
         String typeStr = request.getParameter("type");
         if (!StringUtil.isNumeric(typeStr)) {
             log.error("type[" + typeStr + "]不是数字");
             return ApiResultUtil.failed("type 不是数字");
         }
         int type = Integer.parseInt(typeStr);
+
         String dateStr = request.getParameter("date");
         int date = DateUtil.getNowMinute();
         if (StringUtil.isNumeric(dateStr)) {
             date = Integer.parseInt(dateStr);
         }
+
         Business business = businessProvider.get(id);
         if (business == null) {
             log.error("id[" + id + "]不存在business");
