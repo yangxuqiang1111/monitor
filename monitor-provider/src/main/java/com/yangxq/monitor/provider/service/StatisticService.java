@@ -14,5 +14,5 @@ public interface StatisticService<T> extends IBaseService<T> {
      * @param businessId
      * @return
      */
-   StatisticsDataModel list(int businessId, int end);
+   StatisticsDataModel list(int businessId, int type,int end);
 }

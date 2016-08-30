@@ -14,4 +14,9 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
     }
 
     public abstract IBaseMapper<T> getBaseMapper();
+
+    @Override
+    public T get(int id) {
+        return getBaseMapper().selectByPrimaryKey(id);
+    }
 }

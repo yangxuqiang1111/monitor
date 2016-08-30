@@ -1,11 +1,10 @@
-package com.yangxq.monitor.worker.task;
+package com.yangxq.monitor.connector.task;
 
+import com.yangxq.monitor.common.api.StatisticProvider;
 import com.yangxq.monitor.common.po.Statistics;
 import com.yangxq.monitor.common.utils.DateUtil;
 import com.yangxq.monitor.common.utils.Global;
 import com.yangxq.monitor.common.utils.StatisticMap;
-import com.yangxq.monitor.dao.mysql.mapper.StatisticsMapper;
-import com.yangxq.monitor.dao.mysql.mapper.TransferMapper;
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -23,10 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class TransferStatisticTask {
     private Logger log=Logger.getLogger(TransferStatisticTask.class);
     @Resource
-    private TransferMapper transferMapper;
-
-    @Resource
-    private StatisticsMapper statisticsMapper;
+    private StatisticProvider statisticProvider;
 
     /**
      *
@@ -59,7 +55,7 @@ public class TransferStatisticTask {
             statistics.setBusinessId(next.getKey());
             statistics.setType(Global.BusinessType.TRANSFER.value);
             statistics.setTime(Long.valueOf(nowMinute));
-            statisticsMapper.insert(statistics);
+            statisticProvider.insert(statistics);
         }
 
     }

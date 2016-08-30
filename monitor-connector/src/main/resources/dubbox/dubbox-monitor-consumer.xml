@@ -13,5 +13,6 @@
     <dubbo:reference interface="com.yangxq.monitor.common.api.TransferProvider" id="transferProvider" timeout="3000"/>
     <dubbo:reference interface="com.yangxq.monitor.common.api.DelayProvider" id="delayProvider" timeout="3000"/>
     <dubbo:reference interface="com.yangxq.monitor.common.api.BusinessProvider" id="businessProvider" timeout="3000"/>
+    <dubbo:reference interface="com.yangxq.monitor.common.api.StatisticProvider" id="statisticProvider" timeout="3000" />
 
 </beans>

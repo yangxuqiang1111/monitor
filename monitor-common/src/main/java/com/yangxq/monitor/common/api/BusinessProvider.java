@@ -14,4 +14,10 @@ public interface BusinessProvider{
      */
     boolean insert(Business business);
 
+    /**
+     * 获取
+     * @param id
+     * @return
+     */
+    Business get(int id);
 }

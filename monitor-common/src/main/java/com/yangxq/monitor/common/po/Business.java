@@ -1,6 +1,8 @@
 package com.yangxq.monitor.common.po;
 
-public class Business {
+import java.io.Serializable;
+
+public class Business implements Serializable{
     private Integer id;
 
     private Byte type;
@@ -16,6 +18,8 @@ public class Business {
     private String emails;
 
     private Integer sysId;
+
+    private String title;
 
     public Integer getId() {
         return id;
@@ -79,5 +83,13 @@ public class Business {
 
     public void setSysId(Integer sysId) {
         this.sysId = sysId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 }

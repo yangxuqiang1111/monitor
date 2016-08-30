@@ -112,9 +112,26 @@ public class DateUtil {
         return nowSecond-localDateTime.getHour()*60*60-localDateTime.getMinute()*60-localDateTime.getSecond();
     }
 
+    /**
+     * 获取今天8点的时间戳
+     * @return
+     */
+    public static int getTodayEight(){
+        int nowSecond = getNowSecond();
+        Instant instant = Instant.ofEpochSecond(nowSecond);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        return nowSecond-localDateTime.getHour()*60*60-localDateTime.getMinute()*60-localDateTime.getSecond()+8*60*60;
+    }
+
+
+
     public static void main(String[] args) {
         System.out.println(getTodayBegTime());
     }
 
 
+    public static String getFormatDateStr() {
+        LocalDateTime now = LocalDateTime.now();
+        return now.format( DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
 }

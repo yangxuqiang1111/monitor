@@ -19,8 +19,9 @@ public interface StatisticProvider{
     /**
      * 根据业务id 和时间获取统计结果
      * @param businessId
-     * @param endTime
+     * @param type
+     * @param date
      * @return
      */
-    StatisticsDataModel listByTime(int businessId, int endTime);
+    StatisticsDataModel listByTime(int businessId, int type,int date);
 }

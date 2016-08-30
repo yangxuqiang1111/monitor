@@ -26,7 +26,7 @@ public class StatisticServiceImpl extends BaseServiceImpl<Statistics> implements
     }
 
     @Override
-    public StatisticsDataModel list(int businessId, int endTime) {
+    public StatisticsDataModel list(int businessId,int type, int endTime) {
         int beg = DateUtil.getTodayBegTime();
         List<Statistics> list = statisticsMapper.list(businessId, beg, endTime);
         int total = (endTime - beg) / 60;

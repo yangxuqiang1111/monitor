@@ -1,11 +1,10 @@
-package com.yangxq.monitor.worker.task;
+package com.yangxq.monitor.connector.task;
 
+import com.yangxq.monitor.common.api.StatisticProvider;
 import com.yangxq.monitor.common.po.Statistics;
 import com.yangxq.monitor.common.utils.DateUtil;
 import com.yangxq.monitor.common.utils.Global;
 import com.yangxq.monitor.common.utils.StatisticMap;
-import com.yangxq.monitor.dao.mysql.mapper.DelayMapper;
-import com.yangxq.monitor.dao.mysql.mapper.StatisticsMapper;
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -22,11 +21,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class DelayStatisticTask {
     private Logger log = Logger.getLogger(DelayStatisticTask.class);
+//    @Resource
+//    private DelayMapper delayMapper;
+//
+//    @Resource
+//    private StatisticsMapper statisticsMapper;
     @Resource
-    private DelayMapper delayMapper;
-
-    @Resource
-    private StatisticsMapper statisticsMapper;
+    private StatisticProvider statisticProvider;
 
     /**
      *
@@ -65,7 +66,7 @@ public class DelayStatisticTask {
             statistics.setBusinessId(next.getKey());
             statistics.setType(Global.BusinessType.DELAY.value);
             statistics.setTime(Long.valueOf(nowMinute));
-            statisticsMapper.insert(statistics);
+            statisticProvider.insert(statistics);
         }
     }
 }

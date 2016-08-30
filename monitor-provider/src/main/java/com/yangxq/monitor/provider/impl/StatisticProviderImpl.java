@@ -20,7 +20,7 @@ public class StatisticProviderImpl extends BaseProviderImpl implements Statistic
     }
 
     @Override
-    public StatisticsDataModel listByTime(int businessId, int endTime) {
-        return statisticService.list(businessId,endTime);
+    public StatisticsDataModel listByTime(int businessId, int type,int endTime) {
+        return statisticService.list(businessId, type,endTime);
     }
 }

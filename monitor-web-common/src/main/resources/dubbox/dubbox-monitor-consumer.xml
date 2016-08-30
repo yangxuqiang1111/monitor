@@ -8,5 +8,7 @@
     <dubbo:application name="monitor-web" owner="yangxq" organization="fdyxq"/>
 
     <dubbo:reference interface="com.yangxq.monitor.common.api.StatisticProvider" id="statisticProvider" timeout="3000" />
+    <dubbo:reference interface="com.yangxq.monitor.common.api.SysProvider" id="sysProvider" timeout="3000"/>
+    <dubbo:reference interface="com.yangxq.monitor.common.api.BusinessProvider" id="businessProvider" timeout="3000" />
 
 </beans>

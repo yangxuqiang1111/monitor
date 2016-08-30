@@ -14,4 +14,9 @@ public class BusinessProviderImpl extends BaseProviderImpl implements BusinessPr
     public boolean insert(Business business) {
        return businessService.insert(business);
     }
+
+    @Override
+    public Business get(int id) {
+        return businessService.get(id);
+    }
 }

@@ -40,4 +40,7 @@
     <bean class="com.yangxq.monitor.provider.impl.StatisticProviderImpl" id="statisticProvider"/>
     <dubbo:service interface="com.yangxq.monitor.common.api.StatisticProvider" ref="statisticProvider" />
 
+    <bean class="com.yangxq.monitor.provider.impl.SysProviderImpl" id="sysProvider" />
+    <dubbo:service interface="com.yangxq.monitor.common.api.SysProvider" ref="sysProvider" />
+
 </beans>

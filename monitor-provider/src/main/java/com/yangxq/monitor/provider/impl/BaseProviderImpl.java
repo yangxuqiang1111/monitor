@@ -26,4 +26,6 @@ public abstract class BaseProviderImpl {
     @Resource
     TransferService<Transfer> transferService;
 
+    
+
 }

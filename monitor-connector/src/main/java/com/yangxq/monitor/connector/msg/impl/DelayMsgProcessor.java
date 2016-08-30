@@ -3,6 +3,7 @@ package com.yangxq.monitor.connector.msg.impl;
 import com.yangxq.monitor.common.api.DelayProvider;
 import com.yangxq.monitor.common.po.Delay;
 import com.yangxq.monitor.common.utils.Global;
+import com.yangxq.monitor.common.utils.StatisticMap;
 import com.yangxq.monitor.connector.msg.IBaseMsgProcessor;
 import org.springframework.stereotype.Service;
 
@@ -25,15 +26,19 @@ public class DelayMsgProcessor implements IBaseMsgProcessor {
     @Override
     public void handle(String msg) {
         String[] strings = msg.split(Global.SEPARATED);
-        Delay delay = new Delay();
-        delay.setBusinessId(Integer.parseInt(strings[2]));
-        delay.setDelayTime(Integer.parseInt(strings[3]));
-//        delay.setTime(Integer.parseInt(strings[1]));
-//        delay.setTime(LocalDateTime.parse(strings[1]).toInstant(ZoneOffset.UTC));
-        Long nano = LocalDateTime.parse(strings[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).atZone(ZoneId.systemDefault()).toInstant().getEpochSecond();
-        delay.setTime(nano.intValue());
-        delay.setType(Global.BusinessType.DELAY.value);
-        delayProvider.insert(delay);
+//        Delay delay = new Delay();
+//        delay.setBusinessId(Integer.parseInt(strings[2]));
+//        delay.setDelayTime(Integer.parseInt(strings[3]));
+////        delay.setTime(Integer.parseInt(strings[1]));
+////        delay.setTime(LocalDateTime.parse(strings[1]).toInstant(ZoneOffset.UTC));
+//        Long nano = LocalDateTime.parse(strings[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).atZone(ZoneId.systemDefault()).toInstant().getEpochSecond();
+//        delay.setTime(nano.intValue());
+//        delay.setType(Global.BusinessType.DELAY.value);
+//        delayProvider.insert(delay);
+        int businessId = Integer.parseInt(strings[2]);
+        int delayTime = Integer.parseInt(strings[3]);
+        StatisticMap.getInstance().incrementDelayMap(businessId,delayTime);
+
     }
 
     public static void main(String[] args) {
