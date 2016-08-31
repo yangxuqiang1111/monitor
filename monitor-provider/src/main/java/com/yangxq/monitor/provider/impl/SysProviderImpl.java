@@ -11,6 +11,6 @@ import java.util.List;
 public class SysProviderImpl extends BaseProviderImpl implements SysProvider {
     @Override
     public List<Sys> list() {
-        return null;
+        return sysService.list();
     }
 }

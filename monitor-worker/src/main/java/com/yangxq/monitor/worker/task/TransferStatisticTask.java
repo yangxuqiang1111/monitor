@@ -33,7 +33,7 @@ public class TransferStatisticTask {
      */
     @Scheduled(cron = "0 0/1 *  * * ? ")   //每1分钟执行一次
     public void publish() {
-//        int nowMinute = DateUtil.getNowMinute();
+//        int nowMinute = DateUtil.getNowTimeStampRmS();
 //        log.info("定时统计调用量,加载时间是["+nowMinute+"]");
 //        List<Transfer> businessIds = transferMapper.listByTime(nowMinute - 60, nowMinute);
 //        for (int i = 0; i < businessIds.size(); i++) {
@@ -48,7 +48,7 @@ public class TransferStatisticTask {
 //            statisticsMapper.insert(statistics);
 //        }
 //
-//        int nowMinute = DateUtil.getNowMinute();
+//        int nowMinute = DateUtil.getNowTimeStampRmS();
 //        log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
 //        ConcurrentHashMap<Integer, AtomicInteger> transferMap = StatisticMap.getInstance().getTransferMap();
 //        for (Iterator<Map.Entry<Integer, AtomicInteger>> iterator = transferMap.entrySet().iterator(); iterator.hasNext(); ) {

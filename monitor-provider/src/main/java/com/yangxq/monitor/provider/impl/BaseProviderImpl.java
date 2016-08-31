@@ -1,9 +1,6 @@
 package com.yangxq.monitor.provider.impl;
 
-import com.yangxq.monitor.common.po.Business;
-import com.yangxq.monitor.common.po.Delay;
-import com.yangxq.monitor.common.po.Statistics;
-import com.yangxq.monitor.common.po.Transfer;
+import com.yangxq.monitor.common.po.*;
 import com.yangxq.monitor.provider.service.*;
 
 import javax.annotation.Resource;
@@ -25,6 +22,9 @@ public abstract class BaseProviderImpl {
 
     @Resource
     EmailService emailService;
+
+    @Resource
+    SysService<Sys> sysService;
 
     
 

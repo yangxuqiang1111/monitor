@@ -33,7 +33,7 @@ public class DelayStatisticTask {
      */
     @Scheduled(cron = "0 0/1 *  * * ? ")   //每1分钟执行一次
     public void publish() {
-//        int nowMinute = DateUtil.getNowMinute();
+//        int nowMinute = DateUtil.getNowTimeStampRmS();
 //        log.info("定时统计耗时,加载时间是["+nowMinute+"]");
 //        List<Delay> businessIds = delayMapper.listByTime(nowMinute - 60, nowMinute);
 //       for (int i=0;i<businessIds.size();i++){
@@ -53,7 +53,7 @@ public class DelayStatisticTask {
 //           statistics.setTime(Long.valueOf(nowMinute));
 //           statisticsMapper.insert(statistics);
 //       }
-//        int nowMinute = DateUtil.getNowMinute();
+//        int nowMinute = DateUtil.getNowTimeStampRmS();
 //        log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
 //        ConcurrentHashMap<Integer, AtomicInteger> delayMap = StatisticMap.getInstance().getDelayMap();
 //        ConcurrentHashMap<Integer, AtomicInteger> delayTimeMap = StatisticMap.getInstance().getDelayTimeMap();

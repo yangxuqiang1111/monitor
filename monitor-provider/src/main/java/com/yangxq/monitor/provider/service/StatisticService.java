@@ -9,10 +9,12 @@ import java.util.List;
  * Created by Yangxq on 2016/8/29.
  */
 public interface StatisticService<T> extends IBaseService<T> {
+
     /**
-     *
+     * 根据时间区间 查询统计
      * @param businessId
+     * @param dateStr
      * @return
      */
-   StatisticsDataModel list(int businessId, int type,int end);
+   StatisticsDataModel list(int businessId,String dateStr);
 }

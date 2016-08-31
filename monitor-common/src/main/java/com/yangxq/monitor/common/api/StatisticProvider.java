@@ -17,11 +17,10 @@ public interface StatisticProvider{
     boolean insert(Statistics statistics);
 
     /**
-     * 根据业务id 和时间获取统计结果
+     *  根据业务id 和时间区间获取统计数据
      * @param businessId
-     * @param type
-     * @param date
+     * @param dateStr
      * @return
      */
-    StatisticsDataModel listByTime(int businessId, int type,int date);
+    StatisticsDataModel listByTime(int businessId,String dateStr);
 }

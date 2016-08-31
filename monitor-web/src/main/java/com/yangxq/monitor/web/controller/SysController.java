@@ -29,7 +29,7 @@ public class SysController {
     public ModelAndView get(HttpServletRequest request, ModelAndView modelAndView) {
         List<Sys> list = sysProvider.list();
         modelAndView.addObject("sys",list);
-        modelAndView.setViewName("test");
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 }
