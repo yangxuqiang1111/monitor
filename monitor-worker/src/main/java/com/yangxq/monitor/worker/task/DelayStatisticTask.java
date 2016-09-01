@@ -56,7 +56,7 @@ public class DelayStatisticTask {
 //        int nowMinute = DateUtil.getNowTimeStampRmS();
 //        log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
 //        ConcurrentHashMap<Integer, AtomicInteger> delayMap = StatisticMap.getInstance().getDelayMap();
-//        ConcurrentHashMap<Integer, AtomicInteger> delayTimeMap = StatisticMap.getInstance().getDelayTimeMap();
+//        ConcurrentHashMap<Integer, AtomicInteger> delayTimeMap = StatisticMap.getInstance().getDelayCallMap();
 //        for (Iterator<Map.Entry<Integer, AtomicInteger>> iterator = delayMap.entrySet().iterator(); iterator.hasNext(); ) {
 //            Map.Entry<Integer, AtomicInteger> next = iterator.next();
 //            Statistics statistics = new Statistics();

@@ -112,10 +112,10 @@ public class DateUtil {
      * @return
      */
     public static int getTodayBegTimeStamp() {
-        int nowSecond = getNowSecond();
-        Instant instant = Instant.ofEpochSecond(nowSecond);
-        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-        return nowSecond - localDateTime.getHour() * 60 * 60 - localDateTime.getMinute() * 60 - localDateTime.getSecond();
+        LocalDate localDate = LocalDate.now();
+        LocalDateTime localDateTime = localDate.atTime(0, 0, 0);
+        ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
+        return (int) zonedDateTime.toEpochSecond();
     }
 
     /**
@@ -124,10 +124,10 @@ public class DateUtil {
      * @return
      */
     public static int getTodayEightOclock() {
-        int nowSecond = getNowSecond();
-        Instant instant = Instant.ofEpochSecond(nowSecond);
-        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-        return nowSecond - localDateTime.getHour() * 60 * 60 - localDateTime.getMinute() * 60 - localDateTime.getSecond() + 8 * 60 * 60;
+        LocalDate localDate = LocalDate.now();
+        LocalDateTime localDateTime = localDate.atTime(8, 0, 0);
+        ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
+        return (int) zonedDateTime.toEpochSecond();
     }
 
 
@@ -142,40 +142,44 @@ public class DateUtil {
     }
 
     /**
-     *  获取一天23:59:59 的时间戳
+     * 获取一天23:59:59 的时间戳
+     *
      * @param dateStr
      * @return
      */
     public static int getDayEndTimeStamp(String dateStr) {
         LocalDateTime localDateTime = LocalDate.parse(dateStr).atTime(23, 59, 59);
         ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
-        return (int)zonedDateTime.toEpochSecond();
+        return (int) zonedDateTime.toEpochSecond();
     }
 
 
     /**
      * 获取一天 0:0:0 的时间戳
+     *
      * @param dateStr
      * @return
      */
     public static int getDayBegTimeStamp(String dateStr) {
         LocalDateTime localDateTime = LocalDate.parse(dateStr).atTime(0, 0, 0);
         ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
-        return (int)zonedDateTime.toEpochSecond();
+        return (int) zonedDateTime.toEpochSecond();
     }
 
     /**
-     *获取一天 8;00 的时间戳
+     * 获取一天 8;00 的时间戳
+     *
      * @param dateStr
      * @return
      */
     public static int getDayEightOclock(String dateStr) {
         LocalDateTime localDateTime = LocalDate.parse(dateStr).atTime(8, 0, 0);
         ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
-        return (int)zonedDateTime.toEpochSecond();
+        return (int) zonedDateTime.toEpochSecond();
     }
+
     public static void main(String[] args) {
-        long endTime = getDayEightOclock("2016-07-31");
+        long endTime = getTodayBegTimeStamp();
         System.out.println(endTime);
     }
 

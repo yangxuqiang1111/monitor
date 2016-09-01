@@ -5,94 +5,105 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Yangxq on 2016/8/30.
+ * 统计所需的map
  */
 public class StatisticMap {
-    private StatisticMap(){}
-    private static class Holder{
+    private StatisticMap() {
+    }
+
+    private static class Holder {
         private static StatisticMap statisticMap;
-        static{
-            statisticMap=new StatisticMap();
-            statisticMap.delayMap=new ConcurrentHashMap<>();
-            statisticMap.delayTimeMap=new ConcurrentHashMap<>();
-            statisticMap.transferMap=new ConcurrentHashMap<>();
+
+        static {
+            statisticMap = new StatisticMap();
+            statisticMap.delayMap = new ConcurrentHashMap<>();
+            statisticMap.delayCallMap = new ConcurrentHashMap<>();
+            statisticMap.transferMap = new ConcurrentHashMap<>();
         }
     }
-   public static StatisticMap getInstance(){
-      return Holder.statisticMap;
-   }
+
+    public static StatisticMap getInstance() {
+        return Holder.statisticMap;
+    }
+
     /**
      * 耗时统计map
      */
-    private  ConcurrentHashMap<Integer,AtomicInteger> delayMap;
+    private ConcurrentHashMap<Integer, AtomicInteger> delayMap;
 
     /**
-     * 耗时的调用量
+     * 耗时调用量
      */
-    private  ConcurrentHashMap<Integer,AtomicInteger>delayTimeMap;
+    private ConcurrentHashMap<Integer, AtomicInteger> delayCallMap;
 
     /**
      * 调用量map
      */
-    private   ConcurrentHashMap<Integer,AtomicInteger>transferMap;
-
+    private ConcurrentHashMap<Integer, AtomicInteger> transferMap;
 
 
     /**
      * 增加耗时
+     *
      * @param businessId
      * @param delayTime
      */
-    public  void incrementDelayMap(int businessId, int delayTime) {
-        if (Holder.statisticMap.delayMap.containsKey(businessId)){
+    public void incrementDelayMap(int businessId, int delayTime) {
+        if (Holder.statisticMap.delayMap.containsKey(businessId)) {
             Holder.statisticMap.delayMap.get(businessId).addAndGet(delayTime);
-        }else {
-            Holder.statisticMap.delayMap.put(businessId,new AtomicInteger(delayTime));
+        } else {
+            Holder.statisticMap.delayMap.put(businessId, new AtomicInteger(delayTime));
         }
-        if (Holder.statisticMap.delayTimeMap.containsKey(businessId)){
-            Holder.statisticMap.delayTimeMap.get(businessId).incrementAndGet();
-        }else {
-            Holder.statisticMap.delayTimeMap.put(businessId,new AtomicInteger(1));
+        if (Holder.statisticMap.delayCallMap.containsKey(businessId)) {
+            Holder.statisticMap.delayCallMap.get(businessId).incrementAndGet();
+        } else {
+            Holder.statisticMap.delayCallMap.put(businessId, new AtomicInteger(1));
         }
     }
+
     /**
      * 增加调用量
+     *
      * @param businessId
      * @param num
      */
-    public  void incrementTransferMap(int businessId, int num) {
-        if (Holder.statisticMap.transferMap.containsKey(businessId)){
+    public void incrementTransferMap(int businessId, int num) {
+        if (Holder.statisticMap.transferMap.containsKey(businessId)) {
             Holder.statisticMap.transferMap.get(businessId).addAndGet(num);
-        }else {
-            Holder.statisticMap.transferMap.put(businessId,new AtomicInteger(num));
+        } else {
+            Holder.statisticMap.transferMap.put(businessId, new AtomicInteger(num));
         }
     }
 
     /**
      * 获取耗时map
+     *
      * @return
      */
-    public  ConcurrentHashMap<Integer,AtomicInteger>getDelayMap(){
-        ConcurrentHashMap<Integer,AtomicInteger> map=new ConcurrentHashMap<>(Holder.statisticMap.delayMap);
+    public ConcurrentHashMap<Integer, AtomicInteger> getDelayMap() {
+        ConcurrentHashMap<Integer, AtomicInteger> map = new ConcurrentHashMap<>(Holder.statisticMap.delayMap);
         Holder.statisticMap.delayMap.clear();
         return map;
     }
 
     /**
      * 耗时调用量
+     *
      * @return
      */
-    public  ConcurrentHashMap<Integer,AtomicInteger>getDelayTimeMap(){
-        ConcurrentHashMap<Integer,AtomicInteger> map=new ConcurrentHashMap<>(Holder.statisticMap.delayTimeMap);
-        Holder.statisticMap.delayTimeMap.clear();
+    public ConcurrentHashMap<Integer, AtomicInteger> getDelayCallMap() {
+        ConcurrentHashMap<Integer, AtomicInteger> map = new ConcurrentHashMap<>(Holder.statisticMap.delayCallMap);
+        Holder.statisticMap.delayCallMap.clear();
         return map;
     }
 
     /**
      * 获取调用量
+     *
      * @return
      */
-    public  ConcurrentHashMap<Integer, AtomicInteger> getTransferMap() {
-        ConcurrentHashMap<Integer,AtomicInteger> map=new ConcurrentHashMap<>(Holder.statisticMap.transferMap);
+    public ConcurrentHashMap<Integer, AtomicInteger> getTransferMap() {
+        ConcurrentHashMap<Integer, AtomicInteger> map = new ConcurrentHashMap<>(Holder.statisticMap.transferMap);
         Holder.statisticMap.transferMap.clear();
         return map;
     }

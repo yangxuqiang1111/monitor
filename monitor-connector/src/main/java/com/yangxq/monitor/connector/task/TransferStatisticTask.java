@@ -8,6 +8,7 @@ import com.yangxq.monitor.common.po.Statistics;
 import com.yangxq.monitor.common.utils.DateUtil;
 import com.yangxq.monitor.common.utils.Global;
 import com.yangxq.monitor.common.utils.StatisticMap;
+import com.yangxq.monitor.common.utils.StringUtil;
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -65,9 +66,25 @@ public class TransferStatisticTask {
             if (business.getType() == Global.BusinessType.ERROR.value) {
                 if (transferNum >= business.getMax()) {
                     // 发送邮件
-                    emailProvider.senderTextMail(getEmailSubject(business), business.getEmails().split(","), getEmailText(business));
+                    sendEmail(business,Global.AlarmBusinessType.ERROR_MAX.value);
+                    /**
+                     * TODO  发送短信
+                     */
                 }
 
+            } else if (business.getType() == Global.BusinessType.TRANSFER.value) {
+                if (transferNum > business.getMax()) {
+                    sendEmail(business, Global.AlarmBusinessType.TRANSFER_MAX.value);
+                    /**
+                     * TODO 发送短信
+                     */
+                }
+                if (transferNum < business.getMin()) {
+                    sendEmail(business, Global.AlarmBusinessType.TRANSFER_MIN.value);
+                    /**
+                     * TODO 发送短信
+                     */
+                }
             }
 
             Statistics statistics = new Statistics();
@@ -81,20 +98,54 @@ public class TransferStatisticTask {
     }
 
     /**
-     * 获取邮件内容
+     * 发送邮件
+     *
      * @param business
+     * @param value
+     */
+    private void sendEmail(Business business, int value) {
+        if (!StringUtil.isEmpty(business.getEmails())) {
+            emailProvider.senderTextMail(getEmailSubject(business,value), business.getEmails().split(","), getEmailText(business,value));
+        }
+    }
+
+    /**
+     * 获取邮件内容
+     *
+     * @param business
+     * @param value
      * @return
      */
-    private String getEmailText(Business business) {
-        return business.getTitle()+"错误数超过最大值"+business.getMax();
+    private String getEmailText(Business business, int value) {
+        if (value == Global.AlarmBusinessType.ERROR_MAX.value) {
+            return business.getTitle() + "错误数超过最大值" + business.getMax();
+        }else if(value==Global.AlarmBusinessType.TRANSFER_MAX.value){
+            return business.getTitle() + "调用量超过最大值" + business.getMax();
+        }else if (value==Global.AlarmBusinessType.TRANSFER_MIN.value){
+            return business.getTitle() + "调用量超过最大值" + business.getMax();
+        }else {
+            log.error("不支持的类型["+value+"]");
+            return null;
+        }
     }
 
     /**
      * 获取邮件主题
+     *
      * @param business
+     * @param value
      * @return
      */
-    private String getEmailSubject(Business business) {
-        return business.getTitle()+"错误数超过最大值"+business.getMax();
+    private String getEmailSubject(Business business, int value) {
+        if (value == Global.AlarmBusinessType.ERROR_MAX.value) {
+            return business.getTitle() + "错误数超过最大值" + business.getMax();
+        }else if(value==Global.AlarmBusinessType.TRANSFER_MAX.value){
+            return business.getTitle() + "调用量超过最大值" + business.getMax();
+        }else if (value==Global.AlarmBusinessType.TRANSFER_MIN.value){
+            return business.getTitle() + "调用量超过最大值" + business.getMax();
+        }else {
+            log.error("不支持的类型["+value+"]");
+            return null;
+        }
     }
 }
