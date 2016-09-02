@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50133
 File Encoding         : 65001
 
-Date: 2016-08-31 18:50:50
+Date: 2016-09-01 15:08:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -111,8 +111,9 @@ CREATE TABLE `mt_statistics` (
   `time` bigint(11) NOT NULL COMMENT '时间  格式为yyyyMMddHHmm',
   `type` tinyint(3) NOT NULL COMMENT '业务类型',
   `num` int(11) NOT NULL COMMENT '调用、耗时等',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `idx_time` (`time`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mt_statistics
@@ -219,6 +220,10 @@ INSERT INTO `mt_statistics` VALUES ('124', '895', '1472637180', '2', '1');
 INSERT INTO `mt_statistics` VALUES ('125', '896', '1472637180', '1', '2473');
 INSERT INTO `mt_statistics` VALUES ('126', '896', '1472639160', '1', '287');
 INSERT INTO `mt_statistics` VALUES ('127', '925', '1472640060', '2', '10');
+INSERT INTO `mt_statistics` VALUES ('128', '877', '1472645160', '2', '2');
+INSERT INTO `mt_statistics` VALUES ('129', '895', '1472645160', '2', '2');
+INSERT INTO `mt_statistics` VALUES ('130', '896', '1472645160', '1', '380');
+INSERT INTO `mt_statistics` VALUES ('131', '878', '1472645160', '1', '86');
 
 -- ----------------------------
 -- Table structure for mt_sys

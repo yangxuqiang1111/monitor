@@ -1,11 +1,8 @@
 package com.yangxq.monitor.web.controller;
 
-import com.yangxq.monitor.common.api.BusinessProvider;
 import com.yangxq.monitor.common.api.StatisticProvider;
 import com.yangxq.monitor.common.model.StatisticsDataModel;
-import com.yangxq.monitor.common.po.Business;
 import com.yangxq.monitor.common.utils.DateUtil;
-import com.yangxq.monitor.common.utils.Global;
 import com.yangxq.monitor.common.utils.StringUtil;
 import com.yangxq.monitor.web.common.controller.BaseController;
 import com.yangxq.monitor.web.common.model.ApiResult;
@@ -18,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * Created by Yangxq on 2016/8/29.

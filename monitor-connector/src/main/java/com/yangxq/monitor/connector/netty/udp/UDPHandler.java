@@ -2,6 +2,7 @@ package com.yangxq.monitor.connector.netty.udp;
 
 import com.yangxq.monitor.common.config.CommonConfig;
 import com.yangxq.monitor.common.utils.Global;
+import com.yangxq.monitor.common.utils.StatisticMap;
 import com.yangxq.monitor.common.utils.StringUtil;
 import com.yangxq.monitor.connector.msg.MsgDistributor;
 import io.netty.channel.ChannelHandlerContext;
@@ -32,6 +33,7 @@ public class UDPHandler extends SimpleChannelInboundHandler<DatagramPacket> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception {
         String content = msg.content().toString(Charset.forName("utf-8"));
+        StatisticMap.getInstance().incrementTransferNum();
         log.info(content);
         //判断消息格式
         if (StringUtil.isEmpty(msg)) {

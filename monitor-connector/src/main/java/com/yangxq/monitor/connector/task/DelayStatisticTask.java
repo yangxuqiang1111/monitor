@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by Yangxq on 2016/8/29.
@@ -22,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class DelayStatisticTask {
     private Logger log = Logger.getLogger(DelayStatisticTask.class);
-//    @Resource
+    //    @Resource
 //    private DelayMapper delayMapper;
 //
 //    @Resource
@@ -57,16 +58,20 @@ public class DelayStatisticTask {
 //       }
         int nowMinute = DateUtil.getNowTimeStampRmS();
         log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
-        ConcurrentHashMap<Integer, AtomicInteger> delayMap = StatisticMap.getInstance().getDelayMap();
+        ConcurrentHashMap<Integer, AtomicLong> delayMap = StatisticMap.getInstance().getDelayMap();
         ConcurrentHashMap<Integer, AtomicInteger> delayCallMap = StatisticMap.getInstance().getDelayCallMap();
-        for (Iterator<Map.Entry<Integer, AtomicInteger>> iterator = delayMap.entrySet().iterator(); iterator.hasNext(); ) {
-            Map.Entry<Integer, AtomicInteger> next = iterator.next();
+        for (Iterator<Map.Entry<Integer, AtomicLong>> iterator = delayMap.entrySet().iterator(); iterator.hasNext(); ) {
+            Map.Entry<Integer, AtomicLong> next = iterator.next();
+
             Statistics statistics = new Statistics();
-            int delayTime =next.getValue().intValue();
-            if (delayCallMap.containsKey(next.getKey())){
-                delayTime=(int) Math.ceil(next.getValue().intValue() / delayCallMap.get(next.getKey()).intValue());
+            long delayTime = next.getValue().longValue();
+            int delayCall = 0;
+            if (delayCallMap.containsKey(next.getKey())) {
+                delayCall = delayCallMap.get(next.getKey()).intValue();
+                delayTime = (int) Math.ceil(next.getValue().intValue() / delayCall);
             }
-            statistics.setNum(delayTime);
+            log.info("delayMap key[" + next.getKey() + "],value[" + next.getValue() + "],调用次数是[" + delayCall + "]");
+            statistics.setNum((int) delayTime);
             statistics.setBusinessId(next.getKey());
             statistics.setType(Global.BusinessType.DELAY.value);
             statistics.setTime(Long.valueOf(nowMinute));

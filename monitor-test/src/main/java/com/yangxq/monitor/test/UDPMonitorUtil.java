@@ -76,6 +76,32 @@ public class UDPMonitorUtil {
     }
 
     public static void main(String[] args) {
-        sendPacketOps("127.0.0.1",20021,1,1L);
+//        TestUdp testUdp = new TestUdp();
+        for (int i = 0; i < 100; i++) {
+            TestUdp testUdp = new TestUdp(i);
+            testUdp.start();
+        }
+    }
+}
+
+class TestUdp extends Thread {
+
+    public TestUdp(int i) {
+        this.setName("transfer-"+i);
+    }
+
+    public void run() {
+        int index = 0;
+        System.out.println(this.getName());
+        do {
+            index++;
+            System.out.println(this.getName()+"--index--"+index);
+            UDPMonitorUtil.sendPacketOps("127.0.0.1", 20020, 925, 1L);
+            try {
+                Thread.sleep(4L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while (index < 240);
     }
 }

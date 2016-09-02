@@ -54,6 +54,7 @@ public class TransferStatisticTask {
 //            statistics.setTime(Long.valueOf(nowMinute));
 //            statisticsMapper.insert(statistics);
 //        }
+       log.info("transferNum:"+StatisticMap.getInstance().getTransferNum());
 
         int nowMinute = DateUtil.getNowTimeStampRmS();
         log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
@@ -62,6 +63,7 @@ public class TransferStatisticTask {
             Map.Entry<Integer, AtomicInteger> next = iterator.next();
             Integer businessId = next.getKey();
             int transferNum = next.getValue().intValue();
+            log.info("transferMap key[" + next.getKey() + "],调用次数是[" + next.getValue() + "]");
             Business business = businessProvider.get(businessId);
             if (business.getType() == Global.BusinessType.ERROR.value) {
                 if (transferNum >= business.getMax()) {
