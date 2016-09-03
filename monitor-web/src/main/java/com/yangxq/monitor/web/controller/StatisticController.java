@@ -52,8 +52,8 @@ public class StatisticController extends BaseController {
 
         return ApiResultUtil.success()
                 .putData("title", statisticsDataModel.getTitle())
-                .putData("subtitle", statisticsDataModel.getSubTitle())
-                .putData("ytitle", statisticsDataModel.getyTitle())
+                .putData("subTitle", statisticsDataModel.getSubTitle())
+                .putData("yTitle", statisticsDataModel.getyTitle())
                 .putData("name", statisticsDataModel.getName())
                 .putData("data", statisticsDataModel.getDataArr())
                 .putData("timeStart", statisticsDataModel.getTimeStart());

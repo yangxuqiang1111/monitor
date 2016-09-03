@@ -160,16 +160,16 @@
     function getStatistic(id) {
 //        $("#onclickId").val(id);
         var date = $('#date').val();
-        $.post("${ctx}/statistic/get", {"id": id, "date": date}, function (e) {
-            if(e.status == 0){
+        $.post("${ctx}/statistic/get", {"id": id, "date": date}, function (rs) {
+            if (rs.status == 0) {
                 $(".line-wrap").show();
                 $("#onclickId").val(id);
-                var title = e.data.title;
-                var subtitle = e.data.subtitle;
-                var ytitle = e.data.ytitle;
-                var name = e.data.name;
-                var data = e.data.data;
-                var timeStart = e.data.timeStart;
+                var title = rs.data.title;
+                var subTitle = rs.data.subTitle;
+                var yTitle = rs.data.yTitle;
+                var name = rs.data.name;
+                var data = rs.data.data;
+                var timeStart = rs.data.timeStart;
 //                Highcharts.setOptions(Highcharts.theme);
                 $('#line-picture').highcharts({
                     chart: {
@@ -180,7 +180,7 @@
                         text: title
                     },
                     subtitle: {
-                        text: subtitle
+                        text: subTitle
                     },
                     xAxis: {
                         dateTimeLabelFormats : {
@@ -194,7 +194,7 @@
                     yAxis: {
                         min : 0,
                         title: {
-                            text: ytitle
+                            text: yTitle
                         }
                     },
                     tooltip: {
@@ -243,5 +243,4 @@
     }
 </script>
 </body>
-
 </html>
