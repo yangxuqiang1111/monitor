@@ -1,0 +1,10 @@
+.item {
+    line-height: 35px;
+    display: inline-block;
+    color: rgba(0, 0, 0, .8)
+}
+
+.item:hover {
+    color: #1caf9a;
+    text-decoration: none;
+}

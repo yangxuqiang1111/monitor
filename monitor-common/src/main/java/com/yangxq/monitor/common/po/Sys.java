@@ -1,6 +1,8 @@
 package com.yangxq.monitor.common.po;
 
-public class Sys {
+import java.io.Serializable;
+
+public class Sys implements Serializable{
     private Integer id;
 
     private String name;

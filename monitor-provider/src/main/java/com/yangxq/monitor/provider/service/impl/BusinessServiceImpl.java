@@ -7,6 +7,7 @@ import com.yangxq.monitor.provider.service.BusinessService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Yangxq on 2016/8/29.
@@ -18,5 +19,10 @@ public class BusinessServiceImpl extends BaseServiceImpl<Business> implements Bu
     @Override
     public IBaseMapper<Business> getBaseMapper() {
         return this.businessMapper;
+    }
+
+    @Override
+    public List<Business> listBySysId(int sysId) {
+       return businessMapper.listBySysId(sysId);
     }
 }

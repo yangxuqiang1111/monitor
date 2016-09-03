@@ -10,10 +10,17 @@
     <result column="phones" property="phones" jdbcType="VARCHAR" />
     <result column="emails" property="emails" jdbcType="VARCHAR" />
     <result column="sys_id" property="sysId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, type, des, max, min, phones, emails, sys_id
+    id, type, des, max, min, phones, emails, sys_id, title
   </sql>
+  <select id="listBySysId" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from mt_business
+    where sys_id=#{0}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -27,10 +34,10 @@
   <insert id="insert" parameterType="com.yangxq.monitor.common.po.Business" >
     insert into mt_business (id, type, des, 
       max, min, phones, emails, 
-      sys_id)
+      sys_id, title)
     values (#{id,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{des,jdbcType=VARCHAR}, 
       #{max,jdbcType=INTEGER}, #{min,jdbcType=INTEGER}, #{phones,jdbcType=VARCHAR}, #{emails,jdbcType=VARCHAR}, 
-      #{sysId,jdbcType=INTEGER})
+      #{sysId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yangxq.monitor.common.po.Business" >
     insert into mt_business
@@ -59,6 +66,9 @@
       <if test="sysId != null" >
         sys_id,
       </if>
+      <if test="title != null" >
+        title,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -84,6 +94,9 @@
       </if>
       <if test="sysId != null" >
         #{sysId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -111,6 +124,9 @@
       <if test="sysId != null" >
         sys_id = #{sysId,jdbcType=INTEGER},
       </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -122,7 +138,8 @@
       min = #{min,jdbcType=INTEGER},
       phones = #{phones,jdbcType=VARCHAR},
       emails = #{emails,jdbcType=VARCHAR},
-      sys_id = #{sysId,jdbcType=INTEGER}
+      sys_id = #{sysId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

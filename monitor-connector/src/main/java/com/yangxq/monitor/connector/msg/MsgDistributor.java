@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 /**
  * Created by Yangxq on 2016/8/26.
+ * 消息分发
  */
 @Component
 public class MsgDistributor {

@@ -5,7 +5,6 @@ import com.yangxq.monitor.common.model.StatisticsDataModel;
 import com.yangxq.monitor.common.utils.DateUtil;
 import com.yangxq.monitor.common.utils.StringUtil;
 import com.yangxq.monitor.web.common.controller.BaseController;
-import com.yangxq.monitor.web.common.model.ApiParams;
 import com.yangxq.monitor.web.common.model.ApiResult;
 import com.yangxq.monitor.web.common.utils.ApiResultUtil;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * Created by Yangxq on 2016/8/29.
@@ -24,7 +22,6 @@ import java.util.Map;
 @RequestMapping("statistic")
 @Controller
 public class StatisticController extends BaseController {
-
     @Resource
     private StatisticProvider statisticProvider;
 
@@ -35,16 +32,31 @@ public class StatisticController extends BaseController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "get", method = {RequestMethod.GET})
+    @RequestMapping(value = "get", method = RequestMethod.POST)
     public ApiResult get(HttpServletRequest request) {
-        ApiParams apiParams = getApiParams(request);
-        Map<String, Object> query = apiParams.getQuery();
-        if (!StringUtil.isNumeric(query.get("userId"))) {
-            return ApiResultUtil.failedWithParamError("userId为空或不是数字");
+        String idStr = request.getParameter("id");
+        if (!StringUtil.isNumeric(idStr)) {
+            log.error("id[" + idStr + "]不是数字");
+            return ApiResultUtil.failed("id 不是数字");
         }
-        int toUserId = StringUtil.obj2Int(query.get("userId"));
-        int fromUserId = getUserId(request);
-        return ApiResultUtil.success();
+        int id = Integer.parseInt(idStr);
+
+        String dateStr = request.getParameter("date");
+
+        StatisticsDataModel statisticsDataModel = statisticProvider.listByTime(925,dateStr);
+
+        if (statisticsDataModel == null) {
+            return ApiResultUtil.failed("请求id[" + id + "]无统计数据");
+        }
+
+
+        return ApiResultUtil.success()
+                .putData("title", statisticsDataModel.getTitle())
+                .putData("subtitle", statisticsDataModel.getSubTitle())
+                .putData("ytitle", statisticsDataModel.getyTitle())
+                .putData("name", statisticsDataModel.getName())
+                .putData("data", statisticsDataModel.getDataArr())
+                .putData("timeStart", statisticsDataModel.getTimeStart());
     }
 
 
@@ -55,13 +67,13 @@ public class StatisticController extends BaseController {
      * @return
      */
     @RequestMapping(value = "test", method = RequestMethod.GET)
-    public ModelAndView test(HttpServletRequest request,ModelAndView modelAndView) {
-        int end = DateUtil.getNowMinute();
-        StatisticsDataModel statisticsDataModel = statisticProvider.listByTime(875,end);
+    public ModelAndView test(HttpServletRequest request, ModelAndView modelAndView) {
+        int end = DateUtil.getNowTimeStampRmS();
+//        StatisticsDataModel statisticsDataModel = statisticProvider.listByTime(875,end);
 //        modelAndView.addObject("date",statisticsDataModel.getDateArr());
-        modelAndView.addObject("data",statisticsDataModel.getDataArr());
-        modelAndView.addObject("end",end);
-        modelAndView.addObject("beg",DateUtil.getTodayBegTime());
+//        modelAndView.addObject("data",statisticsDataModel.getDataArr());
+//        modelAndView.addObject("end",end);
+//        modelAndView.addObject("beg",DateUtil.getTodayBegTimeStamp());
         modelAndView.setViewName("test");
         return modelAndView;
     }

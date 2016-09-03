@@ -9,5 +9,12 @@ public interface IBaseService<T> {
      * @param t
      * @return
      */
-    public boolean insert(T t);
+     boolean insert(T t);
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+    T get(int id);
 }
