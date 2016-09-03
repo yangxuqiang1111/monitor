@@ -78,13 +78,16 @@ public class UDPMonitorUtil {
 
     public static void main(String[] args) {
 //        TestUdp testUdp = new TestUdp();
-        int[] businessIds = {875, 877, 879, 881, 925, 875, 877, 879, 881, 925, 875, 877, 879, 881, 925, 875, 877, 879, 881, 925, 875, 877, 879, 881, 925, 875, 877, 879, 881, 925, 875, 877, 879, 881, 925};
-        for (int k = 0; k < businessIds.length; k++) {
-            for (int i = 0; i < 100; i++) {
-                TestUdp testUdp = new TestUdp(i, businessIds[k]);
-                testUdp.start();
+        int[] businessIds = {875, 877, 879, 881, 925};
+        for (int m = 0; m < 10; m++) {
+            for (int k = 0; k < businessIds.length; k++) {
+                for (int i = 0; i < 100; i++) {
+                    TestUdp testUdp = new TestUdp(i, businessIds[k]);
+                    testUdp.start();
+                }
             }
         }
+
 
         new DaemonThread().start();
     }
@@ -95,7 +98,7 @@ class TestUdp extends Thread {
     private int bussinessId;
 
     public TestUdp(int i, int businessId) {
-        this.setName("transfer-"+i);
+        this.setName("transfer-" + i);
         this.bussinessId = businessId;
     }
 
@@ -104,7 +107,7 @@ class TestUdp extends Thread {
         System.out.println(this.getName());
         do {
             index++;
-            System.out.println(this.getName()+"--index--"+index);
+            System.out.println(this.getName() + "--index--" + index);
             UDPMonitorUtil.sendPacketOps("127.0.0.1", 20020, bussinessId, 1L);
             try {
                 Thread.sleep(10L);
