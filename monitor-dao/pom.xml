@@ -31,12 +31,12 @@
             </exclusion>
         </exclusions>
     </dependency>
-    <dependency>
-        <groupId>org.shardbatis</groupId>
-        <artifactId>shardbatis</artifactId>
-        <!--<version>2.0.0B</version>-->
-        <version>3.0</version>
-    </dependency>
+    <!--<dependency>-->
+    <!--<groupId>org.shardbatis</groupId>-->
+    <!--<artifactId>shardbatis</artifactId>-->
+    <!--&lt;!&ndash;<version>2.0.0B</version>&ndash;&gt;-->
+    <!--<version>3.0</version>-->
+    <!--</dependency>-->
     <dependency>
         <groupId>net.sf.jsqlparser</groupId>
         <artifactId>jsqlparser</artifactId>

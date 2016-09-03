@@ -1,10 +1,200 @@
-.item {
-    line-height: 35px;
-    display: inline-block;
-    color: rgba(0, 0, 0, .8)
+body {
+    font-family: "Microsoft YaHei", "Helvetica Neue", "Hiragino Sans GB", "Segoe UI", Tahoma, Arial, STHeiti, sans-serif;
+    background-color: #2f4050;
+    font-size: 13px;
 }
 
-.item:hover {
-    color: #1caf9a;
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 100;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #e4e7ea;
+    z-index: 10000;
+}
+
+#status {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -15px 0 0 -15px;
+    font-size: 32px;
+}
+
+.navbar-default {
+    background-color: transparent;
+    border-color: #2f4050;
+}
+
+.navbar-static-side {
+    width: 220px;
+    position: absolute;
+    z-index: 2001;
+}
+
+.nav-header {
+    padding: 33px 25px;
+    background-color: #2f4050;
+    background-image: url("../images/header-profile.png");
+}
+
+.nav > li > a {
+    padding: 14px 20px 14px 25px;
+    color: #a7b1c2;
+}
+
+.nav > li > a i {
+    margin-right: 6px;
+}
+
+.nav > li.active {
+    border-left: 4px solid #19aa8d;
+    background: #293846;
+}
+
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus {
+    background-color: #293846;
+    color: #fff;
+}
+
+.logo-element h1 {
+    font-size: 30px;
+    letter-spacing: -1.5px;
+    color: #fff;
+    line-height: 30px;
+    margin: 0;
+    text-align: center;
+}
+
+.logo-element h1 span {
+    color: #19aa8d;
+}
+
+.page-wrapper {
+    margin: 0 0 0 220px;
+    padding: 0 15px;
+}
+
+.page-head {
+    border-top: 0;
+    padding: 0 10px 10px 10px;
+}
+
+.white-bg {
+    background-color: #fff;
+}
+
+.gray-bg {
+    background-color: #f3f3f4;
+}
+
+.boder-bottom {
+    border-bottom: 1px solid #e7eaec;
+}
+
+.breadcrumb {
+    background-color: #ffffff;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.breadcrumb a {
+    color: inherit;
+}
+
+.wrap-content {
+    padding: 20px 10px 40px;
+}
+
+.title {
+
+}
+
+.item {
+    margin: 8px 0;
+}
+
+.item-link {
+    font-size: 14px;
+    color: #333;
+    display: block;
+}
+
+.item-link:hover, .item-link:focus {
+    color: #19aa8d;
     text-decoration: none;
 }
+
+.line-wrap {
+    display: none;
+    width: 744px;
+    height: 488px;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    margin-top: -220px;
+    left: 50%;
+    margin-left: -370px;
+    z-index: 2048;
+    border: 2px solid rgba(0, 0, 0, .2);
+    background-color: #fff;
+    text-align: center;
+}
+
+.line-wrap .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2050;
+}
+
+#line-picture {
+    margin-bottom: 10px;
+}
+
+.line-wrap .refresh {
+    background-color: #19aa8d;
+    color: #fff;
+    padding: 6px 30px;
+}
+
+.datetime {
+    position: relative;
+    margin-top: 16px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    display: inline-block;
+}
+
+.form_datetime {
+    padding: 5px 10px;
+    border: none;
+    width: 150px;
+}
+
+.add-on {
+    display: inline-block;
+    border-left: 1px solid rgba(0, 0, 0, .2);
+    padding: 0 6px;
+    color: rgba(0, 0, 0, .6);
+}
+
+.title {
+    border-bottom: 1px solid #e7eaec;
+    margin: 15px 0;
+}
+

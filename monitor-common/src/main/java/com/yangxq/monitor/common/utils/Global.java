@@ -17,8 +17,8 @@ public class Global {
      * 业务类型枚举类
      */
     public enum BusinessType {
-        DELAY((byte) 1), // 耗时
-        TRANSFER((byte) 2),//调用量
+        TRANSFER((byte) 1),//调用量
+        DELAY((byte) 2), // 耗时
         ERROR((byte) 3); // 错误
         public byte value;
 

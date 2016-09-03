@@ -1,7 +1,5 @@
 package com.yangxq.monitor.connector.msg.impl;
 
-import com.yangxq.monitor.common.api.DelayProvider;
-import com.yangxq.monitor.common.po.Delay;
 import com.yangxq.monitor.common.utils.Global;
 import com.yangxq.monitor.common.utils.StatisticMap;
 import com.yangxq.monitor.connector.msg.IBaseMsgProcessor;
@@ -10,7 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -20,8 +17,6 @@ import java.time.format.DateTimeFormatter;
 @Service("delayMsgProcessor")
 public class DelayMsgProcessor implements IBaseMsgProcessor {
 
-    @Resource
-    private DelayProvider delayProvider;
 
     @Override
     public void handle(String msg) {

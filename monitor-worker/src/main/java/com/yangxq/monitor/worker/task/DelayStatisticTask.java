@@ -1,20 +1,10 @@
 package com.yangxq.monitor.worker.task;
 
-import com.yangxq.monitor.common.po.Statistics;
-import com.yangxq.monitor.common.utils.DateUtil;
-import com.yangxq.monitor.common.utils.Global;
-import com.yangxq.monitor.common.utils.StatisticMap;
-import com.yangxq.monitor.dao.mysql.mapper.DelayMapper;
 import com.yangxq.monitor.dao.mysql.mapper.StatisticsMapper;
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Yangxq on 2016/8/29.

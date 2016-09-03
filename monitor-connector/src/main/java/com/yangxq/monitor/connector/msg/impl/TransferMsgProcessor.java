@@ -1,16 +1,11 @@
 package com.yangxq.monitor.connector.msg.impl;
 
-import com.yangxq.monitor.common.api.TransferProvider;
-import com.yangxq.monitor.common.po.Transfer;
 import com.yangxq.monitor.common.utils.Global;
 import com.yangxq.monitor.common.utils.StatisticMap;
 import com.yangxq.monitor.connector.msg.IBaseMsgProcessor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Yangxq on 2016/8/26.
@@ -19,8 +14,6 @@ import java.time.format.DateTimeFormatter;
 @Service("transferMsgProcessor")
 public class TransferMsgProcessor implements IBaseMsgProcessor {
 
-    @Resource
-    private TransferProvider transferProvider;
 
     @Override
     public void handle(String msg) {

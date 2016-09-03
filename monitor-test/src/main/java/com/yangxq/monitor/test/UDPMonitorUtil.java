@@ -1,5 +1,6 @@
 package com.yangxq.monitor.test;
 
+import com.yangxq.monitor.common.utils.DaemonThread;
 import com.yangxq.monitor.common.utils.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,6 +82,7 @@ public class UDPMonitorUtil {
             TestUdp testUdp = new TestUdp(i);
             testUdp.start();
         }
+        new DaemonThread().start();
     }
 }
 
@@ -98,10 +100,10 @@ class TestUdp extends Thread {
             System.out.println(this.getName()+"--index--"+index);
             UDPMonitorUtil.sendPacketOps("127.0.0.1", 20020, 925, 1L);
             try {
-                Thread.sleep(4L);
+                Thread.sleep(10L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        } while (index < 240);
+        } while (index < 30720);
     }
 }

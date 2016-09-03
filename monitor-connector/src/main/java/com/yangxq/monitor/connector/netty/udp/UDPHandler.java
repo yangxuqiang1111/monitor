@@ -34,7 +34,7 @@ public class UDPHandler extends SimpleChannelInboundHandler<DatagramPacket> {
     protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception {
         String content = msg.content().toString(Charset.forName("utf-8"));
         StatisticMap.getInstance().incrementTransferNum();
-        log.info(content);
+//        log.info(content);
         //判断消息格式
         if (StringUtil.isEmpty(msg)) {
             log.error("消息[" + msg + "]为空");

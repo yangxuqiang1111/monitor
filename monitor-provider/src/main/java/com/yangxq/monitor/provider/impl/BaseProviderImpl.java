@@ -1,7 +1,10 @@
 package com.yangxq.monitor.provider.impl;
 
 import com.yangxq.monitor.common.po.*;
-import com.yangxq.monitor.provider.service.*;
+import com.yangxq.monitor.provider.service.BusinessService;
+import com.yangxq.monitor.provider.service.EmailService;
+import com.yangxq.monitor.provider.service.StatisticService;
+import com.yangxq.monitor.provider.service.SysService;
 
 import javax.annotation.Resource;
 
@@ -12,13 +15,10 @@ public abstract class BaseProviderImpl {
 
     @Resource
      BusinessService<Business> businessService;
-    @Resource
-    DelayService<Delay> delayService;
+
     @Resource
     StatisticService<Statistics> statisticService;
 
-    @Resource
-    TransferService<Transfer> transferService;
 
     @Resource
     EmailService emailService;

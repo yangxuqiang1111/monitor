@@ -57,16 +57,6 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
         <property name="mapperInterface" value="com.yangxq.monitor.dao.mysql.mapper.BusinessMapper" />
     </bean>
-
-    <bean id="delayMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
-        <property name="mapperInterface" value="com.yangxq.monitor.dao.mysql.mapper.DelayMapper" />
-    </bean>
-
-    <bean id="transferMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
-        <property name="mapperInterface" value="com.yangxq.monitor.dao.mysql.mapper.TransferMapper" />
-    </bean>
     <bean id="statisticsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
         <property name="mapperInterface" value="com.yangxq.monitor.dao.mysql.mapper.StatisticsMapper" />

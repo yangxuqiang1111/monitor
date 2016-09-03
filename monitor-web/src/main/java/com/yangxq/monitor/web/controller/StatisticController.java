@@ -43,7 +43,7 @@ public class StatisticController extends BaseController {
 
         String dateStr = request.getParameter("date");
 
-        StatisticsDataModel statisticsDataModel = statisticProvider.listByTime(925,dateStr);
+        StatisticsDataModel statisticsDataModel = statisticProvider.listByTime(id, dateStr);
 
         if (statisticsDataModel == null) {
             return ApiResultUtil.failed("请求id[" + id + "]无统计数据");
@@ -64,6 +64,7 @@ public class StatisticController extends BaseController {
      * 获取
      *
      * @param request
+     * @return
      * @return
      */
     @RequestMapping(value = "test", method = RequestMethod.GET)

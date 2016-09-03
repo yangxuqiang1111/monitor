@@ -18,144 +18,160 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
     <link rel="shortcut icon" href="${ctx}/images/favicon.png" type="image/png">
 
-    <title>Bracket Responsive Bootstrap3 Admin</title>
-
-    <link href="${ctx}/css/style.default.css" rel="stylesheet">
+    <title>监控系统</title>
+    <link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${ctx}/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <link href="${ctx}/css/your_style.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="${ctx}/js/html5shiv.js"></script>
-    <script src="${ctx}/js/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
-<!-- Preloader -->
+
 <div id="preloader">
     <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
 </div>
 
-<div id="content" style="display:none; width:700px;height:400px;">
-    <div id="container"></div>
+<div class="line-wrap">
+    <span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+    <div id="line-picture" style="width: 700px;height: 400px;"></div>
+    <input type="hidden" id="onclickId">
+    <button class="btn refresh">刷 新</button>
 </div>
 
 <section>
-
-    <div class="leftpanel">
-
-        <div class="logopanel">
-            <h1><span>[</span> bracket <span>]</span></h1>
+    <nav class="navbar-default navbar-static-side">
+        <ul class="nav" id="sys">
+            <li class="nav-header">
+                <div class="logo-element">
+                    <h1><span>[</span> yangxq <span>]</span></h1>
+                </div>
+            </li>
+            <c:forEach items="${sys}" var="sys" varStatus="status">
+                <c:choose>
+                    <c:when test="${sysId==sys.id}">
+                        <li class="active" data-id=${sys.id}><a href="${ctx}/sys/list?sysId=${sys.id}"><i
+                                class="fa fa-home"></i> <span>${sys.name}</span></a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li data-id=${sys.id}><a href="${ctx}/sys/list?sysId=${sys.id}"><i class="fa fa-home"></i>
+                            <span>${sys.name}</span></a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </ul>
+    </nav>
+    <div class="page-wrapper gray-bg">
+        <div class="row page-head white-bg boder-bottom">
+            <div class="col-lg-10">
+                <h3>业务类型</h3>
+            </div>
+            <div class="col-lg-2">
+                <div class="datetime">
+                    <input type="text" readonly class="form_datetime" id="date">
+                    <span class="add-on"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                </div>
+            </div>
         </div>
-        <!-- logopanel -->
 
-        <div class="leftpanelinner">
-
-            <h5 class="sidebartitle">Navigation</h5>
-
-            <ul class="nav nav-pills nav-stacked nav-bracket" id="sys">
-                <c:forEach items="${sys}" var="sys" varStatus="status">
-                    <c:choose>
-                        <c:when test="${status.index==0}">
-                            <li class="active"><span style="display: none;">${sys.id}</span><a href="javascript:void(0);"><i class="fa fa-home"></i> <span>${sys.name}</span></a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="javascript:void(0);"><span style="display: none;">${sys.id}</span><i class="fa fa-home"></i> <span>菜单二</span></a></li>
-                        </c:otherwise>
-                    </c:choose>
+        <div class="wrap-content">
+            <div class="row title"><h4>调用量</h4></div>
+            <div class="row">
+                <c:forEach items="${business}" var="business">
+                    <c:if test="${business.type==1}">
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 item">
+                            <a href="javascript:void(0);" class="item-link businessItem"
+                               data-id="${business.id}">${business.title}</a>
+                        </div>
+                    </c:if>
 
                 </c:forEach>
-                <%--<li><a href="index.html"><i class="fa fa-home"></i> <span>菜单二</span></a></li>--%>
-                <%--<li><a href="index.html"><i class="fa fa-home"></i> <span>菜单三</span></a></li>--%>
-                <%--<li><a href="index.html"><i class="fa fa-home"></i> <span>菜单四</span></a></li>--%>
-            </ul>
-
-        </div>
-        <!-- leftpanelinner -->
-    </div>
-    <!-- leftpanel -->
-
-    <div class="mainpanel">
-        <div class="headerbar"></div>
-
-        <div class="pageheader">
-            <h2><i class="fa fa-home"></i> 菜单一</h2>
-        </div>
-
-        <div class="contentpanel">
-
-            <div class="row" id="rowId">
             </div>
-            <!-- row -->
-
+            <div class="row title"><h4>错误量</h4></div>
+            <div class="row">
+                <c:forEach items="${business}" var="business">
+                    <c:if test="${business.type==2}">
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 item">
+                            <a href="javascript:void(0);" class="item-link businessItem"
+                               data-id="${business.id}">${business.title}</a>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </div>
+            <div class="row title"><h4>耗时量</h4></div>
+            <div class="row">
+                <c:forEach items="${business}" var="business">
+                    <c:if test="${business.type==3}">
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 item">
+                            <a href="javascript:void(0);" class="item-link businessItem"
+                               data-id="${business.id}">${business.title}</a>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </div>
         </div>
-        <!-- contentpanel -->
-
     </div>
-    <!-- mainpanel -->
-
-
 </section>
 
-
-<script src="${ctx}/js/jquery-1.11.1.min.js"></script>
-
-<script src="${ctx}/js/highCharts/highcharts.js"></script>
-
-<script src="${ctx}/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="${ctx}/js/jquery-ui-1.10.3.min.js"></script>
+<script src="${ctx}/js/jquery-1.8.3.min.js"></script>
 <script src="${ctx}/js/bootstrap.min.js"></script>
-<script src="${ctx}/js/modernizr.min.js"></script>
-<script src="${ctx}/js/jquery.sparkline.min.js"></script>
-<script src="${ctx}/js/toggles.min.js"></script>
-<script src="${ctx}/js/retina.min.js"></script>
-<script src="${ctx}/js/jquery.cookies.js"></script>
-
-<script src="${ctx}/js/flot/jquery.flot.min.js"></script>
-<script src="${ctx}/js/flot/jquery.flot.resize.min.js"></script>
-<script src="${ctx}/js/flot/jquery.flot.spline.min.js"></script>
-<script src="${ctx}/js/morris.min.js"></script>
-<script src="${ctx}/js/raphael-2.1.0.min.js"></script>
-
+<script src="${ctx}/js/highCharts/highcharts.js"></script>
+<%--<script src="${ctx}/js/highCharts/dark-unica.js"></script>--%>
+<script src="${ctx}/js/bootstrap-datetimepicker.js"></script>
 <script src="${ctx}/js/custom.js"></script>
-<script src="${ctx}/js/dashboard.js"></script>
+<script src="${ctx}/js/dateFormat.js"></script>
 
-<script>
-    console.log($("#sys").children("li.active"));
-   var id= $("#sys").children("li.active").children("span").text();
-    $.post("${ctx}/business/list",{"id":id},function(data){
-       if(data.status==0){
-           var business=data.data["business"];
-           for (var i=0;i<business.length;i++){
-                console.log(business[i]);
-               $("#rowId").append(" <div class='col-xs-6 col-sm-4 col-md-3 col-lg-3'><span style='display: none'>"+business[i].id+"</span><a href='javascript:void(0);' class='item businessItem'>"+business[i].title+"</a></div>");
-
-           }
-       }
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        minView: 2,
+        fontAwesome: true
     });
+    $("#date").val(new Date().format("yyyy-MM-dd"));
 </script>
-<script>
 
-    $(".businessItem").click(function(){
-       console.log($(this).pre().text());
+<%--<script>--%>
+<%--var id= $("#sys").find("li.active").attr("data-id");--%>
+<%--$.post("${ctx}/business/list",{"id":id},function(data){--%>
+<%--if(data.status==0){--%>
+<%--var business=data.data["business"];--%>
+<%--for (var i=0;i<business.length;i++){--%>
+<%--console.log(business[i]);--%>
+<%--$("#rowId").append("<div class='col-xs-6 col-sm-4 col-md-3 col-lg-3 item'><a href='javascript:void(0);' class='item-link businessItem' data-id="+ business[i].id +">"+business[i].title+"</a></div>");--%>
+<%--}--%>
+<%--}--%>
+<%--});--%>
+<%--</script>--%>
+<script>
+    $(".businessItem").live('click', function () {
+        console.log($(this).attr("data-id"));
+        getStatistic($(this).attr("data-id"));
     });
-    function refresh(){
+
+    $(".close").click(function () {
+        $(".line-wrap").hide();
+    });
+
+    $(".refresh").click(function () {
         var id = $("#onclickId").val();
-        $('#'+id).click();
-    }
-    getStatistic(875,1,"1");
-    function getStatistic(id,type,desc){
+        getStatistic(id);
+    });
+
+    function getStatistic(id) {
 //        $("#onclickId").val(id);
         var date = $('#date').val();
-        $.post("${ctx}/statistic/get",{"id":id,"type":type,"desc":desc,"date":date},function(e){
+        $.post("${ctx}/statistic/get", {"id": id, "date": date}, function (e) {
             if(e.status == 0){
+                $(".line-wrap").show();
+                $("#onclickId").val(id);
                 var title = e.data.title;
                 var subtitle = e.data.subtitle;
                 var ytitle = e.data.ytitle;
                 var name = e.data.name;
                 var data = e.data.data;
                 var timeStart = e.data.timeStart;
-                $('#container').highcharts({
+//                Highcharts.setOptions(Highcharts.theme);
+                $('#line-picture').highcharts({
                     chart: {
                         zoomType: 'x',
                         spacingRight: 20
@@ -220,9 +236,8 @@
                         data: data
                     }]
                 });
-                $("#content").show();
             }else{
-                alert("系统繁忙");
+                alert("业务无数据");
             }
         },'json');
     }

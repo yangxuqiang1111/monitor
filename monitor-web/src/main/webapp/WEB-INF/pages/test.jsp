@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
-    <script src="${ctx}/js/highCharts/jquery-1.8.3.min.js"></script>
+    <script src="${ctx}/js/jquery-1.8.3.min.js"></script>
     <script src="${ctx}/js/highCharts/highcharts.js"></script>
 </head>
 <body>
