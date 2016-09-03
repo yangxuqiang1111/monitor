@@ -77,7 +77,7 @@ public class StatisticServiceImpl extends BaseServiceImpl<Statistics> implements
         if (business.getType() == Global.BusinessType.DELAY.value) {
             subtitle = Global.getSubTitle(business.getType());
         } else if (business.getType() == Global.BusinessType.TRANSFER.value) {
-            int sum = 0;
+            long sum = 0;
             for (int i = 0; i < dataArr.size(); i++) {
                 sum += dataArr.get(i);
             }

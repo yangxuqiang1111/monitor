@@ -144,7 +144,6 @@
 <%--</script>--%>
 <script>
     $(".businessItem").live('click', function () {
-        console.log($(this).attr("data-id"));
         getStatistic($(this).attr("data-id"));
     });
 
@@ -153,8 +152,7 @@
     });
 
     $(".refresh").click(function () {
-        var id = $("#onclickId").val();
-        getStatistic(id);
+        getStatistic($("#onclickId").val());
     });
 
     function getStatistic(id) {
