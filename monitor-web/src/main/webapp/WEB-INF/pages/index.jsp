@@ -86,7 +86,7 @@
 
                 </c:forEach>
             </div>
-            <div class="row title"><h4>错误量</h4></div>
+            <div class="row title"><h4>耗时数</h4></div>
             <div class="row">
                 <c:forEach items="${business}" var="business">
                     <c:if test="${business.type==2}">
@@ -97,7 +97,7 @@
                     </c:if>
                 </c:forEach>
             </div>
-            <div class="row title"><h4>耗时量</h4></div>
+            <div class="row title"><h4>失败量</h4></div>
             <div class="row">
                 <c:forEach items="${business}" var="business">
                     <c:if test="${business.type==3}">
@@ -168,6 +168,7 @@
                 var name = rs.data.name;
                 var data = rs.data.data;
                 var timeStart = rs.data.timeStart;
+                var xTitle = rs.data.xTitle;
 //                Highcharts.setOptions(Highcharts.theme);
                 $('#line-picture').highcharts({
                     chart: {
@@ -186,7 +187,7 @@
                         },
                         type: 'datetime',
                         title: {
-                            text: null
+                            text: xTitle
                         }
                     },
                     yAxis: {

@@ -38,10 +38,12 @@ public class StatisticServiceImpl extends BaseServiceImpl<Statistics> implements
         int begTime = DateUtil.getTodayBegTimeStamp();
         int endTime = DateUtil.getNowTimeStampRmS();
         int timeStart = DateUtil.getTodayEightOclock();
+        String xTitle = DateUtil.getFormatDateStr();
         if (!StringUtil.isEmpty(dateStr)) {
             begTime = DateUtil.getDayBegTimeStamp(dateStr);
             endTime = DateUtil.getDayEndTimeStamp(dateStr);
-            timeStart=DateUtil.getDayEightOclock(dateStr);
+            timeStart = DateUtil.getDayEightOclock(dateStr);
+            xTitle = dateStr;
         }
         // 判断business类型
         Business business = businessMapper.selectByPrimaryKey(businessId);
@@ -76,7 +78,7 @@ public class StatisticServiceImpl extends BaseServiceImpl<Statistics> implements
         String subtitle = null;
         if (business.getType() == Global.BusinessType.DELAY.value) {
             subtitle = Global.getSubTitle(business.getType());
-        } else if (business.getType() == Global.BusinessType.TRANSFER.value) {
+        } else if (business.getType() == Global.BusinessType.TRANSFER.value || business.getType() == Global.BusinessType.ERROR.value) {
             long sum = 0;
             for (int i = 0; i < dataArr.size(); i++) {
                 sum += dataArr.get(i);
@@ -86,7 +88,8 @@ public class StatisticServiceImpl extends BaseServiceImpl<Statistics> implements
         // 封装数据
         StatisticsDataModel statisticsDataModel = new StatisticsDataModel();
         statisticsDataModel.setDataArr(dataArr);
-        statisticsDataModel.setTitle(business.getTitle() + "(" + DateUtil.getFormatDateStr() + ")");
+        statisticsDataModel.setxTitle(xTitle);
+        statisticsDataModel.setTitle(business.getTitle() + "(" + xTitle + ")");
         statisticsDataModel.setName(Global.getName(business.getType()));
         statisticsDataModel.setSubTitle(subtitle);
         statisticsDataModel.setyTitle(Global.getYtitle(business.getType()));

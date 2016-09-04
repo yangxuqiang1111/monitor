@@ -40,7 +40,6 @@ public class StatisticController extends BaseController {
             return ApiResultUtil.failed("id 不是数字");
         }
         int id = Integer.parseInt(idStr);
-
         String dateStr = request.getParameter("date");
 
         StatisticsDataModel statisticsDataModel = statisticProvider.listByTime(id, dateStr);
@@ -49,10 +48,10 @@ public class StatisticController extends BaseController {
             return ApiResultUtil.failed("请求id[" + id + "]无统计数据");
         }
 
-
         return ApiResultUtil.success()
                 .putData("title", statisticsDataModel.getTitle())
                 .putData("subTitle", statisticsDataModel.getSubTitle())
+                .putData("xTitle", statisticsDataModel.getxTitle())
                 .putData("yTitle", statisticsDataModel.getyTitle())
                 .putData("name", statisticsDataModel.getName())
                 .putData("data", statisticsDataModel.getDataArr())

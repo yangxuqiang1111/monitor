@@ -34,8 +34,9 @@ public class Global {
 
     static {
         subTitleMap = new HashMap<>();
-        subTitleMap.put(BusinessType.DELAY.value, "单位:毫秒");
         subTitleMap.put(BusinessType.TRANSFER.value, "Total:");
+        subTitleMap.put(BusinessType.DELAY.value, "单位:毫秒");
+        subTitleMap.put(BusinessType.ERROR.value, "Total:");
     }
 
     public static String getSubTitle(byte key) {
@@ -49,8 +50,9 @@ public class Global {
 
     static {
         yTitleMap = new HashMap<>();
-        yTitleMap.put(BusinessType.DELAY.value, "接口耗时");
         yTitleMap.put(BusinessType.TRANSFER.value, "调用量");
+        yTitleMap.put(BusinessType.DELAY.value, "耗时数");
+        yTitleMap.put(BusinessType.ERROR.value, "失败量");
     }
 
     public static String getYtitle(Byte type) {
@@ -64,8 +66,9 @@ public class Global {
 
     static {
         nameTitleMap = new HashMap<>();
-        nameTitleMap.put(BusinessType.DELAY.value, "当前分钟接口延迟");
         nameTitleMap.put(BusinessType.TRANSFER.value, "当前分钟调用量");
+        nameTitleMap.put(BusinessType.DELAY.value, "当前分钟耗时数");
+        nameTitleMap.put(BusinessType.ERROR.value, "当前分钟失败量");
     }
 
     public static String getName(Byte type) {

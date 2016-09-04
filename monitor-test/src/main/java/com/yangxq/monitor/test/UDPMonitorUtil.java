@@ -78,11 +78,21 @@ public class UDPMonitorUtil {
 
     public static void main(String[] args) {
 //        TestUdp testUdp = new TestUdp();
-        int[] businessIds = {875, 877, 879, 881, 925};
+
+        int[] delayBusinessIds = {876, 878};
+        for (int k = 0; k < 10; k++) {
+            for (int i = 0; i < delayBusinessIds.length; i++) {
+                for (int j = 0; j < 100; j++) {
+                    TestUdp testUdp = new TestUdp("error--" + j, delayBusinessIds[i], 20021);
+                    testUdp.start();
+                }
+            }
+        }
+        int[] businessIds = {875, 877, 879, 881, 925, 880, 882};
         for (int m = 0; m < 10; m++) {
             for (int k = 0; k < businessIds.length; k++) {
                 for (int i = 0; i < 100; i++) {
-                    TestUdp testUdp = new TestUdp(i, businessIds[k]);
+                    TestUdp testUdp = new TestUdp("transfer--" + i, businessIds[k], 20020);
                     testUdp.start();
                 }
             }
@@ -96,10 +106,12 @@ public class UDPMonitorUtil {
 class TestUdp extends Thread {
 
     private int bussinessId;
+    private int port;
 
-    public TestUdp(int i, int businessId) {
+    public TestUdp(String i, int businessId, int port) {
         this.setName("transfer-" + i);
         this.bussinessId = businessId;
+        this.port = port;
     }
 
     public void run() {
@@ -108,7 +120,7 @@ class TestUdp extends Thread {
         do {
             index++;
             System.out.println(this.getName() + "--index--" + index);
-            UDPMonitorUtil.sendPacketOps("127.0.0.1", 20020, bussinessId, 1L);
+            UDPMonitorUtil.sendPacketOps("127.0.0.1", port, bussinessId, 1L);
             try {
                 Thread.sleep(10L);
             } catch (InterruptedException e) {

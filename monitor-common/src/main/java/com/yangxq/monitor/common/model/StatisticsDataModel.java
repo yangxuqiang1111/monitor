@@ -18,9 +18,19 @@ public class StatisticsDataModel implements Serializable {
 
     private String yTitle;
 
+    private String xTitle;
+
     private String name;
 
     private int timeStart;
+
+    public String getxTitle() {
+        return xTitle;
+    }
+
+    public void setxTitle(String xTitle) {
+        this.xTitle = xTitle;
+    }
 
     public String getTitle() {
         return title;
