@@ -3,6 +3,7 @@ package com.yangxq.monitor.common.utils;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * Created by Yangxq on 2016/8/30.
@@ -120,5 +121,10 @@ public class StatisticMap {
 
     public void incrementTransferNum(){
         Holder.statisticMap.transferNum.incrementAndGet();
+    }
+
+    public static void main(String[] args) {
+        ConcurrentHashMap<Integer,AtomicLong>concurrentHashMap=new ConcurrentHashMap<>();
+         concurrentHashMap.putIfAbsent(2, new AtomicLong(1)).incrementAndGet();
     }
 }
