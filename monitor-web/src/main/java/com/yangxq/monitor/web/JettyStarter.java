@@ -15,6 +15,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 import java.io.IOException;
 
 /**
+ * 添加jetty 启动支持
  * Created by Yangxq on 2016/9/7.
  */
 public class JettyStarter {
@@ -76,17 +77,14 @@ public class JettyStarter {
     }
 
     private static void addRuntimeShutdownHook(final Server server) {
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (server.isStarted()) {
-                    server.setStopAtShutdown(true);
-                    try {
-                        server.stop();
-                    } catch (Exception e) {
-                        System.out.println("Error while stopping jetty server: " + e.getMessage());
-                        LOGGER.error("Error while stopping jetty server: " + e.getMessage(), e);
-                    }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (server.isStarted()) {
+                server.setStopAtShutdown(true);
+                try {
+                    server.stop();
+                } catch (Exception e) {
+                    System.out.println("Error while stopping jetty server: " + e.getMessage());
+                    LOGGER.error("Error while stopping jetty server: " + e.getMessage(), e);
                 }
             }
         }));
