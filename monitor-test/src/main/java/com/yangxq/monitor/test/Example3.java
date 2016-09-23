@@ -12,23 +12,23 @@ public class Example3 {
         while (cin.hasNext()) {
             int len = cin.nextInt();
 
-            System.out.println(len<<1);
+            System.out.println(len << 1);
             int m = cin.nextInt();
             int[] f = new int[len];
             for (int i = 0; i < len; i++) {
                 f[i] = cin.nextInt();
             }
 
-            int i = 0,  index = 0, temp = f[0],a;
+            int i = 0, index = 0, temp = f[0], a = temp;
             while (i < len) {
                 i++;
-                a=temp;
+                a = temp;
                 index = (index + m) % len;
                 temp = f[index];
                 f[index] = a;
             }
             for (i = 0; i < len; i++) {
-                System.out.print(f[i]+"  ");
+                System.out.print(f[i] + "  ");
             }
             System.out.println();
         }
