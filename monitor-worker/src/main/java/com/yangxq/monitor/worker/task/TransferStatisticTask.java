@@ -12,8 +12,8 @@ import javax.annotation.Resource;
 //@Component
 public class TransferStatisticTask {
     private Logger log=Logger.getLogger(TransferStatisticTask.class);
-    @Resource
-    private TransferMapper transferMapper;
+//    @Resource
+//    private TransferMapper transferMapper;
 
     @Resource
     private StatisticsMapper statisticsMapper;

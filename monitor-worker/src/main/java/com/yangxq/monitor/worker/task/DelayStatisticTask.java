@@ -12,8 +12,8 @@ import javax.annotation.Resource;
 //@Component
 public class DelayStatisticTask {
     private Logger log = Logger.getLogger(DelayStatisticTask.class);
-    @Resource
-    private DelayMapper delayMapper;
+//    @Resource
+//    private DelayMapper delayMapper;
 
     @Resource
     private StatisticsMapper statisticsMapper;

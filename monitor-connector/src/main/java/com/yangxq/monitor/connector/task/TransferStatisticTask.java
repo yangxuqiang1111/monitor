@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * Created by Yangxq on 2016/8/29.
@@ -54,13 +55,13 @@ public class TransferStatisticTask {
 //            statistics.setTime(Long.valueOf(nowMinute));
 //            statisticsMapper.insert(statistics);
 //        }
-       log.info("transferNum:"+StatisticMap.getInstance().getTransferNum());
+        log.info("transferNum:" + StatisticMap.getInstance().getTransferNum());
 
         int nowMinute = DateUtil.getNowTimeStampRmS();
         log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
-        ConcurrentHashMap<Integer, AtomicInteger> transferMap = StatisticMap.getInstance().getTransferMap();
-        for (Iterator<Map.Entry<Integer, AtomicInteger>> iterator = transferMap.entrySet().iterator(); iterator.hasNext(); ) {
-            Map.Entry<Integer, AtomicInteger> next = iterator.next();
+        ConcurrentHashMap<Integer, LongAdder> transferMap = StatisticMap.getInstance().getTransferMap();
+        for (Iterator<Map.Entry<Integer, LongAdder>> iterator = transferMap.entrySet().iterator(); iterator.hasNext(); ) {
+            Map.Entry<Integer, LongAdder> next = iterator.next();
             Integer businessId = next.getKey();
             int transferNum = next.getValue().intValue();
             log.info("transferMap key[" + next.getKey() + "],调用次数是[" + next.getValue() + "]");
@@ -68,7 +69,7 @@ public class TransferStatisticTask {
             if (business.getType() == Global.BusinessType.ERROR.value) {
                 if (transferNum >= business.getMax()) {
                     // 发送邮件
-                    sendEmail(business,Global.AlarmBusinessType.ERROR_MAX.value);
+                    sendEmail(business, Global.AlarmBusinessType.ERROR_MAX.value);
                     /**
                      * TODO  发送短信
                      */
@@ -107,7 +108,7 @@ public class TransferStatisticTask {
      */
     private void sendEmail(Business business, int value) {
         if (!StringUtil.isEmpty(business.getEmails())) {
-            emailProvider.senderTextMail(getEmailSubject(business,value), business.getEmails().split(","), getEmailText(business,value));
+            emailProvider.senderTextMail(getEmailSubject(business, value), business.getEmails().split(","), getEmailText(business, value));
         }
     }
 
@@ -121,12 +122,12 @@ public class TransferStatisticTask {
     private String getEmailText(Business business, int value) {
         if (value == Global.AlarmBusinessType.ERROR_MAX.value) {
             return business.getTitle() + "错误数超过最大值" + business.getMax();
-        }else if(value==Global.AlarmBusinessType.TRANSFER_MAX.value){
+        } else if (value == Global.AlarmBusinessType.TRANSFER_MAX.value) {
             return business.getTitle() + "调用量超过最大值" + business.getMax();
-        }else if (value==Global.AlarmBusinessType.TRANSFER_MIN.value){
+        } else if (value == Global.AlarmBusinessType.TRANSFER_MIN.value) {
             return business.getTitle() + "调用量超过最大值" + business.getMax();
-        }else {
-            log.error("不支持的类型["+value+"]");
+        } else {
+            log.error("不支持的类型[" + value + "]");
             return null;
         }
     }
@@ -141,12 +142,12 @@ public class TransferStatisticTask {
     private String getEmailSubject(Business business, int value) {
         if (value == Global.AlarmBusinessType.ERROR_MAX.value) {
             return business.getTitle() + "错误数超过最大值" + business.getMax();
-        }else if(value==Global.AlarmBusinessType.TRANSFER_MAX.value){
+        } else if (value == Global.AlarmBusinessType.TRANSFER_MAX.value) {
             return business.getTitle() + "调用量超过最大值" + business.getMax();
-        }else if (value==Global.AlarmBusinessType.TRANSFER_MIN.value){
+        } else if (value == Global.AlarmBusinessType.TRANSFER_MIN.value) {
             return business.getTitle() + "调用量超过最大值" + business.getMax();
-        }else {
-            log.error("不支持的类型["+value+"]");
+        } else {
+            log.error("不支持的类型[" + value + "]");
             return null;
         }
     }

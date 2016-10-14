@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * Created by Yangxq on 2016/8/29.
@@ -58,10 +59,10 @@ public class DelayStatisticTask {
 //       }
         int nowMinute = DateUtil.getNowTimeStampRmS();
         log.info("定时统计耗时,加载时间是[" + nowMinute + "]");
-        ConcurrentHashMap<Integer, AtomicLong> delayMap = StatisticMap.getInstance().getDelayMap();
-        ConcurrentHashMap<Integer, AtomicInteger> delayCallMap = StatisticMap.getInstance().getDelayCallMap();
-        for (Iterator<Map.Entry<Integer, AtomicLong>> iterator = delayMap.entrySet().iterator(); iterator.hasNext(); ) {
-            Map.Entry<Integer, AtomicLong> next = iterator.next();
+        ConcurrentHashMap<Integer, LongAdder> delayMap = StatisticMap.getInstance().getDelayMap();
+        ConcurrentHashMap<Integer, LongAdder> delayCallMap = StatisticMap.getInstance().getDelayCallMap();
+        for (Iterator<Map.Entry<Integer, LongAdder>> iterator = delayMap.entrySet().iterator(); iterator.hasNext(); ) {
+            Map.Entry<Integer, LongAdder> next = iterator.next();
 
             Statistics statistics = new Statistics();
             long delayTime = next.getValue().longValue();

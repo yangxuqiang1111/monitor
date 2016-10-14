@@ -82,7 +82,7 @@ public class UDPMonitorUtil {
         int[] delayBusinessIds = {876, 878};
         for (int k = 0; k < 10; k++) {
             for (int i = 0; i < delayBusinessIds.length; i++) {
-                for (int j = 0; j < 100; j++) {
+                for (int j = 0; j < 10; j++) {
                     TestUdp testUdp = new TestUdp("error--" + j, delayBusinessIds[i], 20021);
                     testUdp.start();
                 }
@@ -91,7 +91,7 @@ public class UDPMonitorUtil {
         int[] businessIds = {875, 877, 879, 881, 925, 880, 882};
         for (int m = 0; m < 10; m++) {
             for (int k = 0; k < businessIds.length; k++) {
-                for (int i = 0; i < 100; i++) {
+                for (int i = 0; i < 10; i++) {
                     TestUdp testUdp = new TestUdp("transfer--" + i, businessIds[k], 20020);
                     testUdp.start();
                 }
@@ -126,6 +126,6 @@ class TestUdp extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        } while (index < 1228800);
+        } while (index < 1000);
     }
 }
