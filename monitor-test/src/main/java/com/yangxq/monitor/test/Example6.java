@@ -1,4 +1,4 @@
-package com.yangxq.monitor.test.templatePattern;
+package com.yangxq.monitor.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
