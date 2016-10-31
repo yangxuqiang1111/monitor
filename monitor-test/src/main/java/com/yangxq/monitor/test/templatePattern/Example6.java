@@ -21,7 +21,6 @@ public class Example6 {
             iterator.next();
             iterator.remove();
         }
-
 //
 //        HashMap<Object, Object> hashMap = new HashMap();
 //        hashMap.put("a", 1);
