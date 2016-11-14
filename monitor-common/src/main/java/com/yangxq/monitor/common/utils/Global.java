@@ -76,13 +76,14 @@ public class Global {
     }
 
     // 告警业务类型
-    public enum AlarmBusinessType{
+    public enum AlarmBusinessType {
         TRANSFER_MAX(1),
         TRANSFER_MIN(2),
         ERROR_MAX(3);
         public int value;
-        AlarmBusinessType(int value){
-            this.value=value;
+
+        AlarmBusinessType(int value) {
+            this.value = value;
         }
 
     }
