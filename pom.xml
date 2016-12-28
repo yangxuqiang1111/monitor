@@ -17,6 +17,7 @@
         <module>monitor-test</module>
         <module>monitor-worker</module>
         <module>monitor-web-common</module>
+        <module>monitor-spi</module>
     </modules>
 
 

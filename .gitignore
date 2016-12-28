@@ -2,13 +2,31 @@
 
 monitor.iml
 monitor-common/monitor-common.iml
+monitor-common/target
+
 monitor-connector/monitor-connector.iml
+monitor-connector/target
+
 monitor-dao/monitor-dao.iml
+monitor-dao/target
+
 monitor-provider/monitor-provider.iml
+monitor-provider/target
+
 monitor-web/monitor-web.iml
+monitor-web/target
+
 .idea
 monitor-test/monitor-test.iml
+monitor-test/target
+
 yangxq-monitor.iml
+
 monitor-worker/monitor-worker.iml
+monitor-worker/target
 
 monitor-web-common/monitor-web-common.iml
+monitor-web-common/target
+
+monitor-spi/monitor-spi.iml
+monitor-spi/target
