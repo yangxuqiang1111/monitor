@@ -1,0 +1,2 @@
+image=com.yangxq.monitor.spi.service.impl.ImageHelloServiceImpl
+text=com.yangxq.monitor.spi.service.impl.TextHelloServiceImpl

@@ -1,4 +1,4 @@
-package com.yangxq.monitor.spi;
+package com.yangxq.monitor.spi.service;
 
 /**
  * Created by Yangxq on 2016/12/28.

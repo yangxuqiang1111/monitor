@@ -1,6 +1,6 @@
-package com.yangxq.monitor.spi.impl;
+package com.yangxq.monitor.spi.service.impl;
 
-import com.yangxq.monitor.spi.HelloService;
+import com.yangxq.monitor.spi.service.HelloService;
 
 /**
  * Created by Yangxq on 2016/12/28.
