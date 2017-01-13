@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
 /**
@@ -26,12 +27,12 @@ public class EmailServiceImpl implements EmailService {
     public boolean senderTextMail(String emailSubject, String[] emailTo,
                                   String emailText) {
         MimeMessage mailMessage = mailSender.createMimeMessage();
+
         log.info("发送邮件给" + emailTo);
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true, "utf-8");
-            helper.setFrom("18329029859@163.com");// 设置发件人
+            helper.setFrom("info@csc.edu.cn");// 设置发件人
             helper.setTo(emailTo);// 设置收件人
-
 //            helper.setCc(cc);// 设置抄送
             helper.setSubject(emailSubject);// 设置主题
             helper.setText(emailText);// 邮件体

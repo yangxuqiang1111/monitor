@@ -33,6 +33,7 @@
                 <prop key="mail.smtp.socketFactory.port">${mail.smtp.port}</prop>
                 <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
                 <prop key="mail.smtp.socketFactory.fallback">false</prop>
+                <prop key="mail.smtp.ssl.trust">${mail.smtp.host}</prop>
             </props>
         </property>
     </bean>
